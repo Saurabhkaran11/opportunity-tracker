@@ -1112,3 +1112,134 @@ const TRACKS = {
   "speaking":        { label: "Public speaking",        blurb: "Communication and platform building" },
   "remote-business": { label: "Start a business remotely", blurb: "No visa, no relocation, no degree" }
 };
+
+/* =============================================================================
+   YOU — a personal eligibility layer.
+   Profile: INDIAN NATIONAL, CURRENTLY LIVING IN THE USA.
+
+   verdict: "yes"   you can apply as you are
+            "maybe" applying depends on something specific — visa status,
+                    demographic criteria, or where you are physically based
+            "no"    a hard gate you cannot meet (citizenship, prior career break,
+                    a region you do not live in)
+
+   The recurring caveat: if you are in the USA on F-1, earning money — freelance
+   income, prize money, staking rewards — generally needs CPT/OPT authorisation.
+   On H-1B you are tied to your sponsor. Confirm with an immigration attorney
+   before taking income from anything marked with a money caveat.
+   ============================================================================= */
+const YOU = {
+  profile: "Indian national, currently in the USA",
+
+  verdicts: {
+    /* ---- hard no: citizenship or a gate you cannot meet ---- */
+    "AI Apprenticeship Programme (AIAP)": ["no", "Singapore Citizens only — Indian nationals are not eligible, and PRs appear excluded too"],
+    "Coding it Forward Civic Digital Fellowship": ["no", "Requires US citizen, national or permanent resident"],
+    "TechCongress Congressional Innovation Fellowship": ["no", "Requires US citizenship (DACA accepted); no visa sponsorship"],
+    "Horizon Fellowship": ["no", "US executive-branch and Hill placements generally require US citizenship"],
+    "01 Founders": ["no", "UK-based; needs the right to work in the UK"],
+    "SEO London": ["no", "UK/Europe programme with UK work authorisation required"],
+    "10,000 Black Interns": ["no", "UK-based and for Black UK talent specifically"],
+    "Encore Fellowships": ["no", "Requires 20+ years of work experience"],
+    "Kauffman Fellows": ["no", "For people already investing — too early regardless of nationality"],
+    "ETH Zurich Pioneer Fellowship": ["no", "Restricted to ETH-affiliated researchers"],
+    "Horowitz Andreessen Academy (The Academy SF)": ["no", "Excludes anyone with more than one year of college"],
+
+    /* ---- yes: open to you, do it from where you are ---- */
+    "Recurse Center": ["yes", "Open to anyone; not employment, and there is a remote option if your status complicates NYC"],
+    "WorldQuant BRAIN Research Consultant": ["yes", "Global and remote — but the quarterly payment is income; check your visa status first"],
+    "WorldQuant International Quant Championship": ["yes", "Open globally and free; prize money would be income, so check your status"],
+    "Numerai Tournament": ["yes", "Open to anyone worldwide; staking and rewards are financial activity — check your status"],
+    "Kaggle Competitions": ["yes", "Open to anyone; competing is free, prize money would be income"],
+    "YC Startup School": ["yes", "Free, online, no nationality or residency requirement at all"],
+    "Indie Hackers": ["yes", "Free global community"],
+    "MicroConf": ["yes", "Free content, open globally"],
+    "Stripe Atlas": ["yes", "Explicitly built for founders of any nationality, from any country"],
+    "Shopify": ["yes", "Open to anyone"],
+    "Gumroad": ["yes", "Open to anyone"],
+    "Deel": ["yes", "Open to anyone hiring across borders"],
+    "Marketing your own business": ["yes", "Free Google certifications, open globally"],
+    "Bookkeeping your own business": ["yes", "Free Xero certification, open globally"],
+    "Toastmasters International": ["yes", "Anyone can join, clubs across the USA and India, plus online-only clubs"],
+    "TEDx speaker application": ["yes", "No nationality requirement; apply to any local event"],
+    "Intro to Public Speaking (Univ. of Washington)": ["yes", "Free to audit, open to anyone"],
+    "Second City / improv training": ["yes", "Open enrolment, online classes available"],
+    "Baruch MFE pre-programme": ["yes", "Free preparatory courses, open to anyone"],
+    "Certificate in Quantitative Finance (CQF)": ["yes", "Online and global — it is a paid credential, not employment"],
+    "Amplify Trading Graduate Programme": ["yes", "Paid course, open to international applicants"],
+    "VC University (NVCA + Berkeley Law)": ["yes", "Open enrolment online course, no nationality bar"],
+    "VC Lab": ["yes", "Free and global"],
+    "Included VC": ["yes", "Explicitly global and built for people outside the traditional finance pipeline"],
+    "Reforge": ["yes", "Paid online subscription, open globally"],
+    "On Deck": ["yes", "Online and global"],
+    "Founder Institute": ["yes", "Runs online cohorts open to any nationality"],
+    "TinySeed": ["yes", "Fully remote and global — the strongest fit on this whole list for your situation"],
+    "Calm Company Fund": ["yes", "Remote and global; funds the company, not you personally"],
+    "Creative Destruction Lab": ["yes", "Global programme, open application"],
+    "Entrepreneur First": ["yes", "Runs in Bangalore and Singapore as well as the US and Europe; they handle visas in several locations"],
+    "Antler": ["yes", "About 30 cities including India; pick the location that matches your status"],
+    "K-Startup Grand Challenge": ["yes", "Designed specifically for foreign founders and includes visa support"],
+    "Hub71": ["yes", "Built for relocating founders; they provide the visa"],
+    "Flat6Labs": ["yes", "Open to founders relocating into MENA"],
+    "Station F Founders Program": ["yes", "Open to immigrant founders; pairs with the French Tech Visa"],
+    "Accel Atoms": ["yes", "Indian nationality is an advantage — but you would need to be building in India"],
+    "Masai School": ["yes", "Open to Indian nationals; delivered remotely"],
+    "Navgurukul": ["yes", "Open to Indian nationals, but it is residential in India"],
+    "Plaksha Tech Leaders Program": ["yes", "Open to Indian nationals; requires being in India"],
+    "IAPS AI Policy Fellowship — Spring 2027": ["yes", "Applications are explicitly global; two weeks in DC, and you are already in the US"],
+    "Global Shapers (World Economic Forum)": ["yes", "Join a hub in your US city or in India, if you are under 30"],
+    "One Young World": ["yes", "Global delegate programme, scholarships available"],
+    "National Speakers Association": ["yes", "Open membership in the US"],
+    "Professional Speaking Academy": ["yes", "UK-run but delivered online"],
+    "EIT Digital / Deep Tech Talent": ["yes", "Online modules are open, though the network is EU-facing"],
+
+    /* ---- maybe: depends on your visa status or a non-nationality criterion ---- */
+    "Y Combinator — Winter 2027": ["maybe", "YC funds international founders and supports visas — but founding and working for your own startup on F-1 or H-1B has real legal limits. Get immigration advice first"],
+    "South Park Commons Founder Fellowship": ["maybe", "Same founding-on-a-visa question; the Bengaluru option sidesteps it entirely"],
+    "Anthropic Fellows": ["maybe", "US or UK based — depends on whether they can sponsor or you already hold work authorisation"],
+    "OpenAI Residency": ["maybe", "Residents are full-time employees, so it needs visa sponsorship; OpenAI does sponsor, but it is competitive"],
+    "MATS (ML Alignment Theory Scholars)": ["maybe", "Berkeley or London with housing provided; confirm what visa route they support for your cohort"],
+    "Activate Fellowship": ["maybe", "US-based and usually PhD-level; confirm work authorisation requirements"],
+    "RAND Center on AI, Security & Technology Fellows": ["maybe", "Open to all experience levels, but roles needing a security clearance are closed to non-citizens"],
+    "Aspen Science & Technology Policy Fellowship": ["maybe", "US policy programme — check its work-authorisation rules"],
+    "Aspen New Voices Fellowship": ["maybe", "Your Indian nationality fits the Global South remit, but it targets people working in those regions rather than in the US"],
+    "TED Fellows": ["maybe", "No nationality bar, but it is nomination-only — you need someone to nominate you first"],
+    "Obama Foundation Leaders": ["maybe", "Regional cohorts including Asia-Pacific; which one you qualify for depends on where you are based"],
+    "JPMorgan ReEntry Program 2027": ["maybe", "The real gate is a career break of 2+ years, not nationality; JPMorgan does sponsor visas"],
+    "Goldman Sachs Returnship": ["maybe", "Needs 3+ years experience and a 2+ year break; work authorisation still required"],
+    "Morgan Stanley Return to Work": ["maybe", "Career-break requirement applies; confirm sponsorship"],
+    "Jane Street programmes": ["maybe", "They sponsor visas, but most programmes target current students"],
+    "Optiver early-career programmes": ["maybe", "Sponsors visas in the US; mostly aimed at students and new graduates"],
+    "IMC Trading programmes": ["maybe", "Sponsors visas; aimed at students and early career"],
+    "Citadel Datathons / Terminal": ["maybe", "Open to students and recent graduates; check the specific event's rules"],
+    "Toptal": ["maybe", "Open globally, but freelance income in the US needs CPT/OPT if you are on F-1"],
+    "Contra": ["maybe", "Same freelance income question — the platform itself has no nationality bar"],
+    "Upwork": ["maybe", "Open globally; the constraint is your US work authorisation, not the platform"],
+    "Braintrust": ["maybe", "Open globally; same US work-authorisation question"],
+    "Venture for America": ["maybe", "Places you in a salaried US job, so it needs work authorisation"],
+    "Praxis": ["maybe", "Paid US placements — needs work authorisation"],
+    "Venture University": ["maybe", "US-based apprenticeship; confirm whether they can take international participants"],
+    "SEO Career": ["maybe", "Paid US internships needing work authorisation, and it targets specific underrepresented US groups"],
+    "Management Leadership for Tomorrow (MLT)": ["maybe", "Targets underrepresented professionals in the US; check whether you meet their criteria"],
+    "Toigo Fellowship": ["maybe", "For underrepresented US MBA candidates — check their definition"],
+    "Forté Foundation": ["maybe", "Open globally, but it is a women-focused organisation"],
+    "Recast Capital Enablement": ["maybe", "Women-focused and aimed at emerging fund managers"],
+    "Laboratoria": ["maybe", "Women-only and Latin America based"],
+    "Platzi Master": ["maybe", "Latin America focused; Spanish-language"],
+    "ALX": ["maybe", "Built for learners based in Africa"],
+    "Startmate": ["maybe", "Australia and New Zealand; would need relocation and a visa"],
+    "Iterative": ["maybe", "Southeast Asia focused"],
+    "Next Canada / NextAI": ["maybe", "Canada-based; would need Canadian authorisation"],
+    "Deep Science Ventures": ["maybe", "UK-based salaried role — needs UK work authorisation"],
+    "Conception X": ["maybe", "For PhD researchers enrolled at UK universities"],
+    "XPRENEURS / UnternehmerTUM": ["maybe", "Munich-based; would need relocation"]
+  },
+
+  // anything not listed above
+  fallback: ["maybe", "No nationality bar found — confirm work-authorisation rules on the official page"]
+};
+
+function verdictFor(name){
+  const v = YOU.verdicts[name] || YOU.fallback;
+  return { v: v[0], why: v[1] };
+}

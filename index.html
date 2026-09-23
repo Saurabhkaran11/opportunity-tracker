@@ -89,6 +89,20 @@
   .links a:hover{background:#dde9fb}
   .vf{font-size:11.5px;color:var(--ink-3)}
 
+  /* ---- personal eligibility verdict ---- */
+  .v-yes{background:#e7f5ee;color:#0f7a4d;border:1px solid #bfe3d0}
+  .v-maybe{background:#fdf3dc;color:#7a5a00;border:1px solid #ecd9a6}
+  .v-no{background:#fbeceA;color:#9a3d2f;border:1px solid #edc9c1}
+  .verdict{border-radius:8px;padding:8px 10px;font-size:12.8px;line-height:1.45}
+  .verdict b{display:block;font-size:11.5px;text-transform:uppercase;letter-spacing:.05em;margin-bottom:2px}
+  td.vd{min-width:210px}
+  td.vd .tag{margin-bottom:3px;display:inline-block}
+  .card.noapply{opacity:.72}
+  .profile{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:14px;
+           padding:10px 13px;background:#fff;border:1px solid var(--line);border-radius:var(--radius);
+           font-size:13px;color:var(--ink-2)}
+  .profile b{color:var(--ink)}
+
   /* ---- view switch ---- */
   .viewswitch{display:flex;border:1px solid var(--line);border-radius:var(--radius);
               overflow:hidden;background:var(--surface);flex:0 0 auto}
@@ -148,6 +162,7 @@
   <em>confirmed</em> had their deadline checked on that date; the rest are rolling or unpublished for 2027 —
   always click through before relying on a date.</p>
   <div class="stats" id="stats"></div>
+  <div class="profile" id="profile"></div>
 </header>
 
 <div class="controls">
@@ -170,6 +185,8 @@
     <label><input type="checkbox" id="fBeginner"> Only beginner-friendly</label>
     <label><input type="checkbox" id="fVerified"> Only confirmed deadlines</label>
     <label><input type="checkbox" id="fSaved"> Only my shortlist</label>
+    <label><input type="checkbox" id="fCanApply"> Only ones I can apply to</label>
+    <label><input type="checkbox" id="fHideNo"> Hide ones I am barred from</label>
   </div>
   <div class="count"><span id="count"></span> · <button class="linkbtn" id="reset">reset filters</button>
     · <button class="linkbtn" id="clearSaved">clear my shortlist</button></div>
@@ -194,6 +211,9 @@
 
 const TODAY = new Date('2026-09-23T00:00:00');
 
+// how each verdict reads in the UI
+const VERDICT_LABEL = { yes:'You can apply', maybe:'Depends', no:'Not eligible' };
+
 /* ---- shortlist persistence ------------------------------------------------
    localStorage can throw in private windows, so every access is guarded.
    Example: saved = {"Recurse Center": true}
@@ -212,6 +232,7 @@ let saved = loadSaved();
 const state = {
   q:'', tracks:new Set(), sort:'deadline',
   paid:false, remote:false, beginner:false, verified:false, savedOnly:false,
+  canApply:false, hideNo:false,
   // 'cards' or 'table' — remembered per browser, like the shortlist
   view: (function(){ try { return localStorage.getItem('opp-tracker-view') || 'cards'; }
                      catch(e){ return 'cards'; } })()
@@ -248,6 +269,7 @@ function cardHTML(p){
     dlText += ` — <span class="days">${days} day${days === 1 ? '' : 's'} away</span>`;
   }
   const isSaved = !!saved[p.name];
+  const vd = verdictFor(p.name);
 
   const links = [
     `<a href="${p.url}" target="_blank" rel="noopener">Apply / info →</a>`,
@@ -256,7 +278,7 @@ function cardHTML(p){
   ].join('');
 
   return `
-  <article class="card ${isSaved ? 'done' : ''}">
+  <article class="card ${isSaved ? 'done' : ''} ${vd.v === 'no' ? 'noapply' : ''}">
     <input class="tick" type="checkbox" data-name="${encodeURIComponent(p.name)}"
            ${isSaved ? 'checked' : ''} title="Add to my shortlist" aria-label="Shortlist ${p.name}">
     <h3><a href="${p.url}" target="_blank" rel="noopener">${p.name}</a></h3>
@@ -264,6 +286,7 @@ function cardHTML(p){
       <span class="tag ${payClass(p.pay)}">${payLabel(p.pay)}</span>
       <span class="tag t-neutral">${p.remote}</span>
       ${p.beginner ? '<span class="tag t-beg">Beginner-friendly</span>' : ''}
+      <span class="tag v-${vd.v}">${VERDICT_LABEL[vd.v]}</span>
     </div>
     <div class="row"><b>Region</b><span>${p.region}</span></div>
     <div class="row"><b>Money</b><span>${p.payNote}</span></div>
@@ -271,6 +294,9 @@ function cardHTML(p){
     <div class="row"><b>Leads to</b><span>${p.opens}</span></div>
     <div class="dl ${soon ? 'soon' : ''}">${dlText}
       <div class="vf">${p.verified ? 'Deadline confirmed 23 Sep 2026' : 'Not published for 2027 — check the page'}</div>
+    </div>
+    <div class="verdict v-${vd.v}">
+      <b>${VERDICT_LABEL[vd.v]} — ${YOU.profile}</b>${vd.why}
     </div>
     <div class="links">${links}</div>
   </article>`;
@@ -282,6 +308,9 @@ function matches(p){
   if(state.beginner && !p.beginner) return false;
   if(state.verified && !p.verified) return false;
   if(state.savedOnly && !saved[p.name]) return false;
+  const vd = verdictFor(p.name).v;
+  if(state.canApply && vd !== 'yes') return false;
+  if(state.hideNo   && vd === 'no')  return false;
   if(state.tracks.size && !state.tracks.has(p.track)) return false;
   if(state.q){
     const hay = (p.name + p.region + p.elig + p.opens + p.payNote + p.deadline).toLowerCase();
@@ -313,6 +342,7 @@ function rowHTML(p){
   let dlText = p.deadline;
   if(days !== null && days >= 0) dlText += ` (${days}d)`;
   const isSaved = !!saved[p.name];
+  const vd = verdictFor(p.name);
 
   return `
   <tr class="${isSaved ? 'done' : ''}">
@@ -324,6 +354,7 @@ function rowHTML(p){
     <td>${p.remote}</td>
     <td>${p.region}</td>
     <td class="el">${p.elig}${p.beginner ? ' <span class="tag t-beg">Beginner ok</span>' : ''}</td>
+    <td class="vd"><span class="tag v-${vd.v}">${VERDICT_LABEL[vd.v]}</span><br>${vd.why}</td>
     <td class="dlc ${soon ? 'soon' : ''}">${dlText}<br>
       <span class="vf">${p.verified ? '✓ confirmed' : 'check page'}</span></td>
     <td class="op">${p.opens}</td>
@@ -340,15 +371,15 @@ function tableHTML(byTrack){
   const head = `
     <thead><tr>
       <th></th><th>Programme</th><th>Paid?</th><th>Money</th><th>Remote?</th>
-      <th>Region</th><th>Eligibility</th><th>Deadline</th>
+      <th>Region</th><th>Eligibility</th><th>Can I apply?</th><th>Deadline</th>
       <th>Opens the door to</th><th>Learn first</th><th>Certification</th>
     </tr></thead>`;
 
   const body = Object.keys(TRACKS).filter(t => byTrack[t]).map(t => `
-    <tr class="trackrow"><td colspan="11">${TRACKS[t].label} — ${byTrack[t].length}</td></tr>
+    <tr class="trackrow"><td colspan="12">${TRACKS[t].label} — ${byTrack[t].length}</td></tr>
     ${byTrack[t].map(rowHTML).join('')}`).join('');
 
-  return `<p class="scrollhint">Scroll sideways for all 11 columns. Tick a row to shortlist it.</p>
+  return `<p class="scrollhint">Scroll sideways for all 12 columns. Tick a row to shortlist it.</p>
           <div class="tablewrap"><table>${head}<tbody>${body}</tbody></table></div>`;
 }
 
@@ -401,6 +432,8 @@ function renderStats(){
     const d = daysUntil(p.dl); return d !== null && d >= 0 && d <= 45;
   }).length;
   const mine   = Object.keys(saved).length;
+  const canDo  = PROGRAMMES.filter(p => verdictFor(p.name).v === 'yes').length;
+  const barred = PROGRAMMES.filter(p => verdictFor(p.name).v === 'no').length;
 
   document.getElementById('stats').innerHTML = `
     <div class="stat"><b>${PROGRAMMES.length}</b><span>programmes</span></div>
@@ -408,7 +441,15 @@ function renderStats(){
     <div class="stat"><b>${remote}</b><span>fully remote</span></div>
     <div class="stat"><b>${beg}</b><span>beginner ok</span></div>
     <div class="stat"><b>${urgent}</b><span>next 45 days</span></div>
+    <div class="stat"><b>${canDo}</b><span>I can apply</span></div>
+    <div class="stat"><b>${barred}</b><span>barred</span></div>
     <div class="stat"><b>${mine}</b><span>my shortlist</span></div>`;
+
+  document.getElementById('profile').innerHTML =
+    `<b>Filtered for you:</b> ${YOU.profile}.
+     <span class="tag v-yes">${canDo} open to you</span>
+     <span class="tag v-maybe">${PROGRAMMES.length - canDo - barred} depend on your visa or other criteria</span>
+     <span class="tag v-no">${barred} barred</span>`;
 }
 
 /* ---- wiring -------------------------------------------------------------- */
@@ -433,7 +474,8 @@ document.getElementById('sort').addEventListener('change', e => {
   state.sort = e.target.value; render();
 });
 [['fPaid','paid'],['fRemote','remote'],['fBeginner','beginner'],
- ['fVerified','verified'],['fSaved','savedOnly']].forEach(([id,key]) => {
+ ['fVerified','verified'],['fSaved','savedOnly'],
+ ['fCanApply','canApply'],['fHideNo','hideNo']].forEach(([id,key]) => {
   document.getElementById(id).addEventListener('change', e => {
     state[key] = e.target.checked; render();
   });
@@ -441,9 +483,10 @@ document.getElementById('sort').addEventListener('change', e => {
 document.getElementById('reset').addEventListener('click', () => {
   state.q=''; state.tracks.clear(); state.sort='deadline';
   state.paid=state.remote=state.beginner=state.verified=state.savedOnly=false;
+  state.canApply=state.hideNo=false;
   document.getElementById('q').value='';
   document.getElementById('sort').value='deadline';
-  ['fPaid','fRemote','fBeginner','fVerified','fSaved']
+  ['fPaid','fRemote','fBeginner','fVerified','fSaved','fCanApply','fHideNo']
     .forEach(id => document.getElementById(id).checked=false);
   document.querySelectorAll('.chip').forEach(c => c.setAttribute('aria-pressed','false'));
   render();

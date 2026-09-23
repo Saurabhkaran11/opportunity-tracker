@@ -19,6 +19,7 @@ Research current as of **23 September 2026**.
 
 - [How to read this](#how-to-read-this)
 - [If you are starting from zero](#if-you-are-starting-from-zero)
+- [Personal eligibility layer](#personal-eligibility-layer) — Indian national in the USA
 - [Track 1 — Learn to build](#track-1--learn-to-build)
 - [Track 2 — Founder programmes](#track-2--founder-programmes)
 - [Track 3 — AI research & safety](#track-3--ai-research--safety)
@@ -58,12 +59,71 @@ Three things are worth saying plainly, because they change the shortlist.
 
 ---
 
+## Personal eligibility layer
+
+The live page carries a verdict on every row for one specific profile:
+**Indian national, currently living in the USA.**
+
+| Verdict | Count | Meaning |
+|---|---|---|
+| **You can apply** | 46 | No nationality or residency bar |
+| **Depends** | 39 | Gated on your visa status, or on a non-nationality criterion |
+| **Not eligible** | 11 | A hard gate you cannot meet |
+
+Filter with **"Only ones I can apply to"** or **"Hide ones I am barred from"** on the page.
+
+### The 11 hard blocks
+
+- [AIAP Singapore](https://aiap.sg/apprenticeship/) — Singapore Citizens only.
+- [Coding it Forward](https://codingitforward.com/apply) — US citizen, national or permanent resident.
+- [TechCongress](https://techcongress.io/apply) — US citizenship required; no visa sponsorship.
+- [Horizon Fellowship](https://horizonpublicservice.org/) — executive-branch and Hill placements generally need US citizenship.
+- [01 Founders](https://01founders.co/) — needs the right to work in the UK.
+- [SEO London](https://www.seo-london.org/) — UK work authorisation.
+- [10,000 Black Interns](https://www.10000blackinterns.com/) — UK-based, and for Black UK talent.
+- [Encore Fellowships](https://encore.org/fellowships/) — requires 20+ years of experience.
+- [Kauffman Fellows](https://www.kauffmanfellows.org/) — for people already investing.
+- [ETH Pioneer Fellowship](https://ethz.ch/en/industry/entrepreneurship/for-researchers/pioneer-fellowships.html) — ETH-affiliated researchers only.
+- [The Academy SF](https://www.theacademysf.com/admissions) — excludes anyone with more than a year of college.
+
+### Correction: AIAP Singapore
+
+I recommended AIAP as the single best programme on this list across several rounds. **That was wrong for
+this profile.** On checking eligibility directly, AIAP is restricted to **Singapore Citizens** — most
+current sources say citizens only, with Permanent Residents also excluded. As an Indian national you
+cannot apply, whether you are in the US or anywhere else. It stays in the data marked *Not eligible*
+so the record is honest.
+
+### The recurring visa caveat
+
+Most "Depends" rows come down to one question: **can you legally earn this money?**
+
+- On **F-1**, freelance income, prize money and staking rewards generally need CPT or OPT authorisation.
+- On **H-1B**, you are tied to your sponsoring employer; outside income and founding a company are restricted.
+- Founding a startup while on either status has real limits — [Y Combinator](https://ycombinator.com/apply) and [South Park Commons](https://www.southparkcommons.com/apply/) will fund international founders, but the immigration side is yours to solve.
+
+I am not an immigration lawyer and this is not legal advice. Confirm with one before taking income
+from anything marked with a money caveat.
+
+### What is actually open to you, today
+
+Paid **and** open to you with no nationality bar — 14 rows. The strongest:
+
+- [WorldQuant BRAIN](https://worldquantbrain.com/consultant) — remote, global, pays quarterly, no experience needed.
+- [Numerai](https://numer.ai/) and [Kaggle](https://www.kaggle.com/competitions) — remote, open to anyone.
+- [IAPS](https://www.iaps.ai/fellowship) — applications explicitly global, and you are already in the US for the DC fortnight.
+- [TinySeed](https://tinyseed.com/program) — fully remote and global; the best long-term fit for your situation.
+- [Entrepreneur First](https://apply.joinef.com/) and [Antler](https://www.antler.co/cohort-start-dates) — both run in India, which sidesteps the visa question entirely.
+- [K-Startup](https://www.k-startupgc.org/), [Hub71](https://hub71.com/), [Flat6Labs](https://www.flat6labs.com/) — built for foreign founders and provide the visa.
+
+---
+
 ## Track 1 — Learn to build
 
 | Programme | Region | Eligibility | Paid? | Remote? | Deadline | Opens the door to | Learn first | Certification |
 |---|---|---|---|---|---|---|---|---|
 | [Recurse Center](https://www.recurse.com/apply) | NYC + remote | Codes a little, no degree | Free; grants to $7,000 | Hybrid | ⚠️ Rolling, every 6 weeks | Senior eng roles via hiring partners | [CS50x (free)](https://cs50.harvard.edu/x/) | [CS50 cert (free)](https://cs50.harvard.edu/x/) |
-| [AIAP Singapore](https://aiap.sg/apprenticeship/) | Singapore | Grads and mid-career switchers | **SGD 4,000/mo** | In person | ✅ Opens Q4 2026 | Applied-AI roles, >90% placed | [fast.ai (free)](https://course.fast.ai/) | [DeepLearning.AI (paid)](https://www.deeplearning.ai/courses/) |
+| [AIAP Singapore](https://aiap.sg/apprenticeship/) | Singapore | **Singapore Citizens only** — see the correction below | **SGD 4,000/mo** | In person | ✅ Opens Q4 2026 | Applied-AI roles, >90% placed | [fast.ai (free)](https://course.fast.ai/) | [DeepLearning.AI (paid)](https://www.deeplearning.ai/courses/) |
 | [ALX](https://www.alxafrica.com/) | Africa + remote | Grads and professionals | ~$5/month | Hybrid | ⚠️ Rolling | Data and AI roles in Africa | [freeCodeCamp (free)](https://www.freecodecamp.org/) | [freeCodeCamp certs (free)](https://www.freecodecamp.org/learn) |
 | [01 Founders](https://01founders.co/) | UK | Adults, no CS background | Free, job guarantee | In person | ⚠️ Rolling | Junior dev roles in the UK | [Odin Project (free)](https://www.theodinproject.com/) | None |
 | [Navgurukul](https://www.navgurukul.org/) | India | Underserved graduates | Free + housing | In person | ⚠️ Rolling | First engineering job | [Khan Academy (free)](https://www.khanacademy.org/computing) | None |
@@ -308,7 +368,7 @@ free guest before paying the dues.
 - **By mid-Oct:** apply to [Recurse Center](https://www.recurse.com/apply) — rolling, free, no credential screen.
 - **7–14 Oct:** register for [VC University](https://venturecapitaluniversity.com/online-course/) only if finance is the direction.
 - **This month:** put a [Contra](https://contra.com/) profile up so remote income can fund the rest.
-- **Q4 2026:** apply to [AIAP Singapore](https://aiap.sg/apprenticeship/) — the best paid beginner programme here.
+- ~~**Q4 2026:** AIAP Singapore~~ — **withdrawn: Singapore Citizens only.** See [the correction](#correction-aiap-singapore).
 - **Feb 2027:** [TinySeed](https://tinyseed.com/program), the accelerator that never asks you to move.
 - **Next 6 months:** ship three small projects in public. That, not a certificate, is what makes the founder and AI-lab rows reachable.
 
