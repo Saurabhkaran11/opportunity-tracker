@@ -103,6 +103,22 @@
            font-size:13px;color:var(--ink-2)}
   .profile b{color:var(--ink)}
 
+  /* ---- visa status row: all three statuses side by side, //// separated ---- */
+  .statusrow{border-radius:8px;background:#f5f3f0;padding:9px 11px;font-size:12.6px;line-height:1.5}
+  .statusrow > b{display:block;font-size:11px;text-transform:uppercase;letter-spacing:.05em;
+                 color:var(--ink-3);margin-bottom:5px}
+  .sitem{display:inline}
+  .sitem .sname{font-weight:600;color:var(--ink)}
+  .sitem .sv{font-weight:600}
+  .sv-yes{color:#0f7a4d} .sv-maybe{color:#7a5a00} .sv-no{color:#9a3d2f}
+  .sep{color:var(--ink-3);letter-spacing:.06em;padding:0 5px;font-weight:600}
+  .swhy{color:var(--ink-2)}
+  td.vs{min-width:300px;font-size:12.4px}
+  td.vs .statusrow{background:none;padding:0}
+  .legend{margin-top:14px;padding:10px 13px;background:#fff;border:1px solid var(--line);
+          border-radius:var(--radius);font-size:12.8px;color:var(--ink-2);line-height:1.6}
+  .legend b{color:var(--ink)}
+
   /* ---- view switch ---- */
   .viewswitch{display:flex;border:1px solid var(--line);border-radius:var(--radius);
               overflow:hidden;background:var(--surface);flex:0 0 auto}
@@ -163,6 +179,7 @@
   always click through before relying on a date.</p>
   <div class="stats" id="stats"></div>
   <div class="profile" id="profile"></div>
+  <div class="legend" id="legend"></div>
 </header>
 
 <div class="controls">
@@ -260,6 +277,29 @@ function payLabel(pay){
 
 /* ---- rendering ------------------------------------------------------------ */
 
+/* All three statuses on one line, separated by //// — no toggling required.
+   Example: F-1 Maybe //// H-1B Maybe //// India Yes  */
+const STATUS_ORDER = ['f1','h1b','india'];
+const SHORT = { f1:'F-1', h1b:'H-1B', india:'India' };
+const SHORT_V = { yes:'Yes', maybe:'Maybe', no:'No' };
+
+function statusRow(p, withWhy){
+  const parts = STATUS_ORDER.map(st => {
+    const r = verdictForStatus(p, st);
+    return `<span class="sitem"><span class="sname">${SHORT[st]}</span>
+      <span class="sv sv-${r.v}">${SHORT_V[r.v]}</span>${
+        withWhy && r.visa ? `<span class="swhy"> — ${r.visa}</span>` : ''}</span>`;
+  });
+  return `<div class="statusrow"><b>If I am on…</b>${parts.join('<span class="sep">////</span>')}</div>`;
+}
+
+/* best case across the three, used by the filters */
+function bestVerdict(p){
+  return STATUS_ORDER
+    .map(st => verdictForStatus(p, st).v)
+    .sort((a,b) => RANK[a] - RANK[b])[0];
+}
+
 function cardHTML(p){
   const days = daysUntil(p.dl);
   // "soon" = a real date inside the next 45 days, so it earns the red treatment
@@ -269,7 +309,7 @@ function cardHTML(p){
     dlText += ` — <span class="days">${days} day${days === 1 ? '' : 's'} away</span>`;
   }
   const isSaved = !!saved[p.name];
-  const vd = verdictFor(p.name);
+  const vd = { v: bestVerdict(p), why: verdictFor(p.name).why };
 
   const links = [
     `<a href="${p.url}" target="_blank" rel="noopener">Apply / info →</a>`,
@@ -298,6 +338,7 @@ function cardHTML(p){
     <div class="verdict v-${vd.v}">
       <b>${VERDICT_LABEL[vd.v]} — ${YOU.profile}</b>${vd.why}
     </div>
+    ${vd.v === 'no' ? '' : statusRow(p, true)}
     <div class="links">${links}</div>
   </article>`;
 }
@@ -308,7 +349,7 @@ function matches(p){
   if(state.beginner && !p.beginner) return false;
   if(state.verified && !p.verified) return false;
   if(state.savedOnly && !saved[p.name]) return false;
-  const vd = verdictFor(p.name).v;
+  const vd = bestVerdict(p);
   if(state.canApply && vd !== 'yes') return false;
   if(state.hideNo   && vd === 'no')  return false;
   if(state.tracks.size && !state.tracks.has(p.track)) return false;
@@ -342,7 +383,7 @@ function rowHTML(p){
   let dlText = p.deadline;
   if(days !== null && days >= 0) dlText += ` (${days}d)`;
   const isSaved = !!saved[p.name];
-  const vd = verdictFor(p.name);
+  const vd = { v: bestVerdict(p), why: verdictFor(p.name).why };
 
   return `
   <tr class="${isSaved ? 'done' : ''}">
@@ -355,6 +396,12 @@ function rowHTML(p){
     <td>${p.region}</td>
     <td class="el">${p.elig}${p.beginner ? ' <span class="tag t-beg">Beginner ok</span>' : ''}</td>
     <td class="vd"><span class="tag v-${vd.v}">${VERDICT_LABEL[vd.v]}</span><br>${vd.why}</td>
+    <td class="vs">${vd.v === 'no'
+      ? '<span class="sv sv-no">Barred whatever your status</span>'
+      : STATUS_ORDER.map(st => { const r = verdictForStatus(p, st);
+          return `<span class="sitem"><span class="sname">${SHORT[st]}</span>
+            <span class="sv sv-${r.v}">${SHORT_V[r.v]}</span></span>`; })
+          .join('<span class="sep">////</span>')}</td>
     <td class="dlc ${soon ? 'soon' : ''}">${dlText}<br>
       <span class="vf">${p.verified ? '✓ confirmed' : 'check page'}</span></td>
     <td class="op">${p.opens}</td>
@@ -371,15 +418,16 @@ function tableHTML(byTrack){
   const head = `
     <thead><tr>
       <th></th><th>Programme</th><th>Paid?</th><th>Money</th><th>Remote?</th>
-      <th>Region</th><th>Eligibility</th><th>Can I apply?</th><th>Deadline</th>
+      <th>Region</th><th>Eligibility</th><th>Can I apply?</th>
+      <th>F-1 //// H-1B //// India</th><th>Deadline</th>
       <th>Opens the door to</th><th>Learn first</th><th>Certification</th>
     </tr></thead>`;
 
   const body = Object.keys(TRACKS).filter(t => byTrack[t]).map(t => `
-    <tr class="trackrow"><td colspan="12">${TRACKS[t].label} — ${byTrack[t].length}</td></tr>
+    <tr class="trackrow"><td colspan="13">${TRACKS[t].label} — ${byTrack[t].length}</td></tr>
     ${byTrack[t].map(rowHTML).join('')}`).join('');
 
-  return `<p class="scrollhint">Scroll sideways for all 12 columns. Tick a row to shortlist it.</p>
+  return `<p class="scrollhint">Scroll sideways for all 13 columns. Tick a row to shortlist it.</p>
           <div class="tablewrap"><table>${head}<tbody>${body}</tbody></table></div>`;
 }
 
@@ -432,8 +480,11 @@ function renderStats(){
     const d = daysUntil(p.dl); return d !== null && d >= 0 && d <= 45;
   }).length;
   const mine   = Object.keys(saved).length;
-  const canDo  = PROGRAMMES.filter(p => verdictFor(p.name).v === 'yes').length;
-  const barred = PROGRAMMES.filter(p => verdictFor(p.name).v === 'no').length;
+  const byStatus = {};
+  STATUS_ORDER.forEach(st => byStatus[st] =
+    PROGRAMMES.filter(p => verdictForStatus(p, st).v === 'yes').length);
+  const canDo  = PROGRAMMES.filter(p => bestVerdict(p) === 'yes').length;
+  const barred = PROGRAMMES.filter(p => bestVerdict(p) === 'no').length;
 
   document.getElementById('stats').innerHTML = `
     <div class="stat"><b>${PROGRAMMES.length}</b><span>programmes</span></div>
@@ -441,15 +492,26 @@ function renderStats(){
     <div class="stat"><b>${remote}</b><span>fully remote</span></div>
     <div class="stat"><b>${beg}</b><span>beginner ok</span></div>
     <div class="stat"><b>${urgent}</b><span>next 45 days</span></div>
-    <div class="stat"><b>${canDo}</b><span>I can apply</span></div>
+    <div class="stat"><b>${byStatus.f1}</b><span>open on F-1</span></div>
+    <div class="stat"><b>${byStatus.h1b}</b><span>open on H-1B</span></div>
+    <div class="stat"><b>${byStatus.india}</b><span>open via India</span></div>
     <div class="stat"><b>${barred}</b><span>barred</span></div>
     <div class="stat"><b>${mine}</b><span>my shortlist</span></div>`;
 
   document.getElementById('profile').innerHTML =
-    `<b>Filtered for you:</b> ${YOU.profile}.
-     <span class="tag v-yes">${canDo} open to you</span>
-     <span class="tag v-maybe">${PROGRAMMES.length - canDo - barred} depend on your visa or other criteria</span>
+    `<b>Filtered for you:</b> ${YOU.profile} — and, as an Indian citizen, with the option of
+     setting things up through India instead.
+     <span class="tag v-yes">${canDo} open on at least one route</span>
+     <span class="tag v-maybe">${PROGRAMMES.length - canDo - barred} conditional</span>
      <span class="tag v-no">${barred} barred</span>`;
+
+  document.getElementById('legend').innerHTML =
+    `<b>Reading the status row:</b> every card and table row shows all three routes at once,
+     separated by <span class="sep">////</span> — <b>F-1</b> student in the USA
+     <span class="sep">////</span> <b>H-1B</b> worker in the USA
+     <span class="sep">////</span> <b>India</b>, meaning you run it through an Indian entity or
+     from India. The India column is usually the most permissive, because it takes US
+     work-authorisation out of the question entirely.`;
 }
 
 /* ---- wiring -------------------------------------------------------------- */

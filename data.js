@@ -51,7 +51,7 @@ const PROGRAMMES = [
     url: "https://aiap.sg/apprenticeship/",
     track: "technical", region: "Singapore",
     remote: "In person", pay: "Paid", payNote: "SGD 4,000/month, fully government-funded",
-    elig: "Fresh graduates AND mid-career switchers; technical or non-technical background",
+    elig: "SINGAPORE CITIZENS ONLY — otherwise aimed at fresh graduates and mid-career switchers",
     deadline: "Next intake applications open Q4 2026", dl: "2026-12-01", verified: true, beginner: true,
     opens: "Applied-AI engineer roles; over 90% placed within 6 months",
     learn: { t: "fast.ai (free)", u: "https://course.fast.ai/" },
@@ -1243,3 +1243,152 @@ function verdictFor(name){
   const v = YOU.verdicts[name] || YOU.fallback;
   return { v: v[0], why: v[1] };
 }
+
+/* =============================================================================
+   VISA LAYER
+   The nationality verdict above answers "is an Indian citizen allowed?".
+   This layer answers the second question: "given my status, can I actually
+   take part and take the money?"
+
+   Statuses:
+     f1     F-1 student in the USA
+     h1b    H-1B worker in the USA
+     india  building from India, or willing to set up an Indian entity —
+            available to you as an Indian citizen, and it removes the US
+            work-authorisation problem entirely
+
+   Each programme gets a WORK TYPE, which decides how status affects it:
+     none      no money changes hands — learning, community, membership
+     income    you get paid directly: stipend, prize, freelance, quarterly payout
+     usjob     US employment; needs work authorisation or sponsorship
+     company   founding or holding equity in your own venture
+     relocate  the programme moves you somewhere else and sponsors the visa
+
+   Most work types are derived from the row's own fields; the map below is only
+   for the ones the derivation would get wrong.
+   ============================================================================= */
+const WORK_OVERRIDE = {
+  // pure learning or community, even though the row looks paid or in-person
+  "Recurse Center": "none", "YC Startup School": "none", "Indie Hackers": "none",
+  "MicroConf": "none", "Toastmasters International": "none", "TEDx speaker application": "none",
+  "Intro to Public Speaking (Univ. of Washington)": "none", "Second City / improv training": "none",
+  "Baruch MFE pre-programme": "none", "Certificate in Quantitative Finance (CQF)": "none",
+  "Amplify Trading Graduate Programme": "none", "VC University (NVCA + Berkeley Law)": "none",
+  "VC Lab": "none", "Included VC": "none", "Reforge": "none", "On Deck": "none",
+  "Founder Institute": "none", "EIT Digital / Deep Tech Talent": "none",
+  "Marketing your own business": "none", "Bookkeeping your own business": "none",
+  "National Speakers Association": "none", "Professional Speaking Academy": "none",
+  "Global Shapers (World Economic Forum)": "none", "One Young World": "none",
+  "Creative Destruction Lab": "none", "Kaggle Competitions": "income",
+
+  // you run a business / hold equity
+  "Stripe Atlas": "company", "Shopify": "company", "Gumroad": "company",
+  "Deel": "company", "TinySeed": "company", "Calm Company Fund": "company",
+
+  // freelance earnings inside the US
+  "Toptal": "income", "Contra": "income", "Upwork": "income", "Braintrust": "income",
+
+  // programmes that move you and handle the visa themselves
+  "K-Startup Grand Challenge": "relocate", "Hub71": "relocate",
+  "Flat6Labs": "relocate", "Station F Founders Program": "relocate",
+  "Antler": "relocate", "Entrepreneur First": "relocate",
+
+  // US employment
+  "OpenAI Residency": "usjob", "Anthropic Fellows": "usjob",
+  "MATS (ML Alignment Theory Scholars)": "usjob", "Activate Fellowship": "usjob",
+  "RAND Center on AI, Security & Technology Fellows": "usjob",
+  "Venture for America": "usjob", "Praxis": "usjob", "Venture University": "usjob",
+  "SEO Career": "usjob", "JPMorgan ReEntry Program 2027": "usjob",
+  "Goldman Sachs Returnship": "usjob", "Morgan Stanley Return to Work": "usjob",
+  "Jane Street programmes": "usjob", "Optiver early-career programmes": "usjob",
+  "IMC Trading programmes": "usjob", "Citadel Datathons / Terminal": "income",
+
+  // stipend fellowships you can hold without a US job offer
+  "IAPS AI Policy Fellowship — Spring 2027": "income",
+  "Aspen New Voices Fellowship": "income", "TED Fellows": "income",
+  "Obama Foundation Leaders": "income",
+
+  // Indian programmes — the point is that you can do these as an Indian citizen
+  "Accel Atoms": "company", "Masai School": "none",
+  "Navgurukul": "none", "Plaksha Tech Leaders Program": "none",
+
+  // founder programmes that do not relocate you
+  "Y Combinator — Winter 2027": "company",
+  "South Park Commons Founder Fellowship": "company",
+  "Deep Science Ventures": "usjob", "Conception X": "none",
+  "Startmate": "relocate", "Iterative": "relocate", "Next Canada / NextAI": "relocate",
+  "XPRENEURS / UnternehmerTUM": "relocate"
+};
+
+function workTypeFor(p){
+  if(WORK_OVERRIDE[p.name]) return WORK_OVERRIDE[p.name];
+  if(p.pay !== 'Paid') return 'none';                 // free or you-pay = no money to you
+  if(p.remote === 'Remote') return 'income';          // paid and remote = direct payout
+  if(/USA|US |United States|San Francisco|New York|Berkeley/.test(p.region)) return 'usjob';
+  return 'relocate';
+}
+
+/* How each work type plays out per status. Returns [verdict, note]. */
+const VISA_RULES = {
+  none: {
+    f1:    ["yes",   "No money changes hands, so your F-1 status is not affected"],
+    h1b:   ["yes",   "No money changes hands, so it sits outside your H-1B employment"],
+    india: ["yes",   "No constraint at all"]
+  },
+  income: {
+    f1:    ["maybe", "Taking part is fine; receiving the money is not, without CPT or OPT authorisation"],
+    h1b:   ["maybe", "H-1B ties you to your sponsor — outside income is generally not permitted"],
+    india: ["yes",   "Paid to an Indian bank account, no US work-authorisation problem"]
+  },
+  usjob: {
+    f1:    ["maybe", "US employment — you would need OPT, CPT, or the employer to sponsor you"],
+    h1b:   ["maybe", "Would require an H-1B transfer to this employer"],
+    india: ["maybe", "You would need them to sponsor a visa and relocate you"]
+  },
+  company: {
+    f1:    ["maybe", "You may own a company on F-1, but working in it needs CPT or OPT. Set it up through India instead and this problem disappears"],
+    h1b:   ["maybe", "You cannot work for your own company on an H-1B tied to another employer. An Indian entity avoids this"],
+    india: ["yes",   "Incorporate in India, or use Stripe Atlas from India — no US status involved"]
+  },
+  relocate: {
+    f1:    ["yes",   "They move you and sponsor the visa; you would be leaving F-1 status behind"],
+    h1b:   ["yes",   "They move you and sponsor the visa; you would give up the H-1B"],
+    india: ["yes",   "Apply from India — this is exactly who these are built for"]
+  }
+};
+
+/* Rows whose "maybe" was ONLY ever about US work authorisation. Operating from
+   India removes the objection entirely, so it should not be counted twice. */
+const US_VISA_CAVEAT_ONLY = new Set([
+  "Y Combinator — Winter 2027", "South Park Commons Founder Fellowship",
+  "Toptal", "Contra", "Upwork", "Braintrust"
+]);
+
+/* The combined verdict: the stricter of nationality and visa. */
+const RANK = { yes:0, maybe:1, no:2 };
+function verdictForStatus(p, status){
+  const nat = verdictFor(p.name);                 // nationality-level answer
+  if(nat.v === 'no') return { v:'no', why: nat.why, visa:null };
+
+  const wt = workTypeFor(p);
+  const [vv, vnote] = VISA_RULES[wt][status];
+
+  // an India-only programme is a "yes" precisely when you are operating from India
+  if(/Accel Atoms|Masai School|Navgurukul|Plaksha/.test(p.name) && status !== 'india'){
+    return { v:'maybe', why: nat.why, visa:'You would need to be based in India for this one' };
+  }
+
+  // from India, a purely visa-shaped caveat no longer applies
+  if(status === 'india' && US_VISA_CAVEAT_ONLY.has(p.name)){
+    return { v: vv, why: nat.why, visa: vnote };
+  }
+
+  const worse = RANK[vv] > RANK[nat.v] ? vv : nat.v;
+  return { v: worse, why: nat.why, visa: vnote };
+}
+
+const STATUS_LABEL = {
+  f1:    "F-1 student (USA)",
+  h1b:   "H-1B worker (USA)",
+  india: "Building from India"
+};

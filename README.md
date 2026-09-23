@@ -94,16 +94,38 @@ current sources say citizens only, with Permanent Residents also excluded. As an
 cannot apply, whether you are in the US or anywhere else. It stays in the data marked *Not eligible*
 so the record is honest.
 
-### The recurring visa caveat
+### Visa status, shown three ways at once
 
-Most "Depends" rows come down to one question: **can you legally earn this money?**
+Every card and table row carries all three routes on one line, separated by `////`:
 
-- On **F-1**, freelance income, prize money and staking rewards generally need CPT or OPT authorisation.
-- On **H-1B**, you are tied to your sponsoring employer; outside income and founding a company are restricted.
-- Founding a startup while on either status has real limits — [Y Combinator](https://ycombinator.com/apply) and [South Park Commons](https://www.southparkcommons.com/apply/) will fund international founders, but the immigration side is yours to solve.
+```
+F-1 Maybe  ////  H-1B Maybe  ////  India Yes
+```
 
-I am not an immigration lawyer and this is not legal advice. Confirm with one before taking income
-from anything marked with a money caveat.
+- **F-1** — student in the USA.
+- **H-1B** — worker in the USA.
+- **India** — you run it through an Indian entity, or from India. Available to you as an Indian citizen, and it takes US work authorisation out of the question entirely.
+
+| Route | Open to you | Why the difference |
+|---|---|---|
+| **F-1** | 31 | Taking part is fine; receiving money needs CPT or OPT |
+| **H-1B** | 31 | You are tied to your sponsor; outside income and own-company work are restricted |
+| **India** | **52** | No US work-authorisation problem at all |
+| Barred on every route | 11 | Hard citizenship or criteria gates |
+
+The India route nearly doubles what is open to you, and it more than triples the
+**paid** programmes you can actually take money from — 6 on a US status, **20** via India.
+
+Each row is classified by what kind of money is involved:
+
+- **none** — learning, community or membership; no status implications at all.
+- **income** — stipend, prize or payout straight to you.
+- **usjob** — US employment; needs authorisation or sponsorship.
+- **company** — founding or holding equity; an Indian entity sidesteps the problem.
+- **relocate** — the programme moves you and sponsors the visa, so your current status stops mattering.
+
+I am not an immigration lawyer and none of this is legal advice. Confirm with one
+before taking income from anything marked Maybe.
 
 ### What is actually open to you, today
 
