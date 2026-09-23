@@ -29,6 +29,9 @@ Research current as of **23 September 2026**.
 - [Track 7 — Investment banking, trading & quant](#track-7--investment-banking-trading--quant)
 - [Track 8 — Public speaking](#track-8--public-speaking)
 - [Track 9 — Starting a business remotely](#track-9--starting-a-business-remotely)
+- [Track 10 — Multiple income streams](#track-10--multiple-income-streams)
+- [Track 11 — International business](#track-11--international-business)
+- [Where to register in the USA — all 50 states](#where-to-register-in-the-usa--all-50-states-plus-dc)
 - [Remote vs in person](#remote-vs-in-person)
 - [Certifications: free vs paid](#certifications-free-vs-paid)
 - [The week-one plan](#the-week-one-plan)
@@ -137,6 +140,184 @@ Paid **and** open to you with no nationality bar — 14 rows. The strongest:
 - [TinySeed](https://tinyseed.com/program) — fully remote and global; the best long-term fit for your situation.
 - [Entrepreneur First](https://apply.joinef.com/) and [Antler](https://www.antler.co/cohort-start-dates) — both run in India, which sidesteps the visa question entirely.
 - [K-Startup](https://www.k-startupgc.org/), [Hub71](https://hub71.com/), [Flat6Labs](https://www.flat6labs.com/) — built for foreign founders and provide the visa.
+
+---
+
+## Track 10 — Multiple income streams
+
+Same format as every other track. All of these are remote and open worldwide; the
+constraint is never your passport, it is your US work authorisation — which is why
+the India column matters so much here.
+
+### Selling your time (fastest first money)
+
+| Platform | Paid? | Eligibility | F-1 //// H-1B //// India | Learn first | Certification |
+|---|---|---|---|---|---|
+| [Upwork](https://www.upwork.com/) | **Yes** | Anyone, no credential | Maybe //// Maybe //// **Yes** | [Upwork Academy (free)](https://www.upwork.com/resources/academy) | [Skill Certifications (free)](https://www.upwork.com/resources/academy) |
+| [Fiverr](https://www.fiverr.com/) | **Yes** | Anyone | Maybe //// Maybe //// **Yes** | [Fiverr Learn](https://learn.fiverr.com/) | — |
+| [Contra](https://contra.com/) | **Yes**, commission-free | Anyone | Maybe //// Maybe //// **Yes** | [Contra guides (free)](https://contra.com/independent) | — |
+| [Toptal](https://www.toptal.com/) | **Yes**, high rates | Experienced, tough screen | Maybe //// Maybe //// **Yes** | [Toptal blog (free)](https://www.toptal.com/developers/blog) | Passing the screen |
+| [Arc.dev](https://arc.dev/) | **Yes** | Experienced developers | Maybe //// Maybe //// **Yes** | [Arc guides (free)](https://arc.dev/talent-blog/) | — |
+| [Clarity.fm](https://clarity.fm/) | **Yes**, per minute | Domain expertise | Maybe //// Maybe //// **Yes** | [Clarity](https://clarity.fm/) | — |
+| [Codementor](https://www.codementor.io/) | **Yes** | Developers | Maybe //// Maybe //// **Yes** | [Codementor blog (free)](https://www.codementor.io/blog) | — |
+
+### AI and data work — genuinely open to beginners
+
+| Platform | Paid? | Eligibility | F-1 //// H-1B //// India | Learn first |
+|---|---|---|---|---|
+| [Mercor](https://mercor.com/) | **Yes**, hourly | Domain experts of all kinds, not just engineers | Maybe //// Maybe //// **Yes** | [Mercor FAQ (free)](https://mercor.com/) |
+| [Outlier](https://outlier.ai/) | **Yes**, hourly | Many backgrounds | Maybe //// Maybe //// **Yes** | [Outlier help (free)](https://outlier.ai/) |
+| [Surge AI](https://www.surgehq.ai/) | **Yes** | Open application | Maybe //// Maybe //// **Yes** | [Surge blog (free)](https://www.surgehq.ai/blog) |
+| [Prolific](https://www.prolific.com/) | **Yes**, small but steady | Anyone in a supported country | Maybe //// Maybe //// **Yes** | [Participant guide (free)](https://www.prolific.com/participants) |
+
+### Digital products and audience
+
+| Platform | Paid? | Eligibility | F-1 //// H-1B //// India | Learn first | Certification |
+|---|---|---|---|---|---|
+| [Gumroad](https://gumroad.com/) | **Yes**, per sale | Anyone | Maybe //// Maybe //// **Yes** | [Gumroad blog (free)](https://gumroad.com/blog) | — |
+| [Lemon Squeezy](https://www.lemonsqueezy.com/) | **Yes** | Anyone selling digital goods | Maybe //// Maybe //// **Yes** | [Docs (free)](https://docs.lemonsqueezy.com/) | — |
+| [Substack](https://substack.com/) | **Yes**, subscriptions | Anyone who writes consistently | Maybe //// Maybe //// **Yes** | [Substack Grow (free)](https://on.substack.com/) | — |
+| [Teachable](https://teachable.com/) | **Yes** | Anyone who can teach | Maybe //// Maybe //// **Yes** | [Free training](https://teachable.com/resources) | — |
+| [Udemy](https://www.udemy.com/teaching/) | **Yes**, rev share | Anyone | Maybe //// Maybe //// **Yes** | [Teaching Center (free)](https://www.udemy.com/teaching/) | — |
+| [Amazon KDP](https://kdp.amazon.com/) | **Yes**, royalties | Anyone | Maybe //// Maybe //// **Yes** | [KDP University (free)](https://kdp.amazon.com/en_US/help/topic/G200635650) | — |
+| [YouTube Partner](https://www.youtube.com/creators/) | **Yes**, after threshold | 1,000 subs + 4,000 watch hours | Maybe //// Maybe //// **Yes** | [Creator Academy (free)](https://www.youtube.com/creators/) | — |
+| [Envato](https://elements.envato.com/) | **Yes**, royalties | Designers and developers | Maybe //// Maybe //// **Yes** | [Author guides (free)](https://author.envato.com/) | — |
+| [Notion / Figma templates](https://www.notion.com/templates) | **Yes** | Anyone who designs a useful system | Maybe //// Maybe //// **Yes** | [Notion guides (free)](https://www.notion.com/help/guides) | — |
+
+### Commerce
+
+| Platform | Paid? | Eligibility | F-1 //// H-1B //// India | Learn first | Certification |
+|---|---|---|---|---|---|
+| [Shopify](https://www.shopify.com/) | **Yes**, your margin | Anyone | Maybe //// Maybe //// **Yes** | [Shopify Learn (free)](https://www.shopify.com/learn) | [Shopify certs (free)](https://www.shopify.com/partners/academy) |
+| [Printful / Printify](https://www.printful.com/) | **Yes**, no inventory | Anyone | Maybe //// Maybe //// **Yes** | [Printful Academy (free)](https://www.printful.com/academy) | — |
+| [Etsy](https://www.etsy.com/sell) | **Yes** | Anyone making or designing | Maybe //// Maybe //// **Yes** | [Seller Handbook (free)](https://www.etsy.com/seller-handbook) | — |
+| [Amazon FBA](https://sell.amazon.com/) | **Yes**, needs capital | Anyone with upfront money | Maybe //// Maybe //// Maybe | [Seller University (free)](https://sell.amazon.com/learn) | — |
+
+### Skill-to-cash, no client required
+
+| Platform | Paid? | Eligibility | F-1 //// H-1B //// India | Learn first | Certification |
+|---|---|---|---|---|---|
+| [WorldQuant BRAIN](https://worldquantbrain.com/consultant) | **~$2K–$8K+/quarter** | No experience needed | Maybe //// Maybe //// **Yes** | [BRAIN hub (free)](https://platform.worldquantbrain.com/learn) | Consultant → Grandmaster (free) |
+| [Numerai](https://numer.ai/) | **Yes**, performance | Anyone who trains models | Maybe //// Maybe //// **Yes** | [Docs (free)](https://docs.numer.ai/) | — |
+| [Kaggle](https://www.kaggle.com/competitions) | **Yes**, prizes | Complete beginners | Maybe //// Maybe //// **Yes** | [Kaggle Learn (free)](https://www.kaggle.com/learn) | Kaggle certs (free) |
+| [HackerOne / Bugcrowd](https://www.hackerone.com/) | **Yes**, bounties | Anyone who finds real bugs | Maybe //// Maybe //// **Yes** | [Web Security Academy (free)](https://portswigger.net/web-security) | [Burp Certified (paid)](https://portswigger.net/web-security/certification) |
+| [Topcoder](https://www.topcoder.com/) | **Yes**, prizes | Developers and designers | Maybe //// Maybe //// **Yes** | [Thrive (free)](https://www.topcoder.com/thrive) | — |
+| [Acquire.com](https://acquire.com/) | **Yes**, buy cash flow | Needs capital to buy | Maybe //// Maybe //// **Yes** | [Acquire blog (free)](https://acquire.com/blog/) | — |
+
+### Stacking order that actually works
+
+- **Month 1–3:** one service stream — [Contra](https://contra.com/) or [Upwork](https://www.upwork.com/) — to prove you can get paid at all.
+- **Month 2–6:** one skill-to-cash stream in parallel — [WorldQuant BRAIN](https://worldquantbrain.com/consultant) or [Kaggle](https://www.kaggle.com/competitions) — because it builds a credential at the same time.
+- **Month 4–9:** one digital product from what you learned doing the first two — [Gumroad](https://gumroad.com/) is the lowest-friction start.
+- **Month 9+:** one recurring stream — [Substack](https://substack.com/), a micro-SaaS, or a [TinySeed](https://tinyseed.com/program)-shaped product.
+
+Do not start four at once. Each needs about 90 days before you can tell whether it works.
+
+---
+
+## Track 11 — International business
+
+| Structure / tool | Cost | Eligibility | F-1 //// H-1B //// India | What it gives you |
+|---|---|---|---|---|
+| [Indian company + LUT export](https://www.mca.gov.in/) | Low | **Indian citizens — your cheapest legitimate route** | Yes //// Yes //// **Yes** | Bill foreign clients from India, GST zero-rated |
+| [Stripe Atlas](https://stripe.com/atlas) | ~$500 one-off | Any nationality, any country | Maybe //// Maybe //// **Yes** | US company, EIN and bank account |
+| [Firstbase.io](https://www.firstbase.io/) | Formation + compliance | Non-US founders | Maybe //// Maybe //// **Yes** | US entity with filings handled |
+| [doola](https://www.doola.com/) | Formation + books | Non-US founders, many Indian | Maybe //// Maybe //// **Yes** | US LLC run entirely from India |
+| [Estonia e-Residency](https://www.e-resident.gov.ee/) | ~€120 + company costs | Any nationality | Maybe //// Maybe //// **Yes** | EU company you run online |
+| [Dubai free zone](https://www.ifza.com/) | Licence fee | Any nationality | Yes //// Yes //// **Yes** | 0% personal tax, residence visa attached |
+| [Singapore Pte Ltd](https://www.acra.gov.sg/) | Needs paid nominee director | Any nationality | Maybe //// Maybe //// **Yes** | Credible Asian holding company |
+| [GIFT City, India](https://ifsca.gov.in/) | Varies | Indian and foreign businesses | Yes //// Yes //// **Yes** | Tax holidays serving global clients from India |
+| [Mercury](https://mercury.com/) | Free | US entities with foreign founders | Maybe //// Maybe //// **Yes** | US dollar banking, no branch visit |
+| [Wise Business](https://wise.com/business/) | Low fees | Supported countries incl. India and USA | Yes //// Yes //// **Yes** | Get paid in USD/EUR/GBP, convert cheaply to INR |
+| [Payoneer](https://www.payoneer.com/) | Low fees | Widely used by Indian freelancers | Yes //// Yes //// **Yes** | Collect marketplace payments into an Indian account |
+| [Paddle](https://www.paddle.com/) | Rev share | Software businesses | Maybe //// Maybe //// **Yes** | Sell worldwide without 60 tax registrations |
+| [Deel](https://www.deel.com/) | Per seat | Anyone hiring abroad | Maybe //// Maybe //// **Yes** | Hire your first contractor legally |
+| [Remote.com](https://remote.com/) | Per seat | Companies hiring abroad | Maybe //// Maybe //// **Yes** | Employ abroad with no local entity |
+
+### The structural decision, plainly
+
+- **If the business is your actual work and you are on F-1 or H-1B:** the clean answer is an **Indian private limited or LLP with an LUT**, billing clients from India. No US work-authorisation question arises.
+- **If you need US customers to see a US company:** [Stripe Atlas](https://stripe.com/atlas) or [doola](https://www.doola.com/), owned by you, operated from India.
+- **If you want EU presence without moving:** [Estonia e-Residency](https://www.e-resident.gov.ee/).
+- **If you are staying in the US long-term and will get a green card:** form in the state where you live, and ignore the Wyoming advice below.
+
+---
+
+## Where to register in the USA — all 50 states plus DC
+
+> **An LLC is not a work permit.** You can *own* a US company on F-1 or H-1B. You generally cannot
+> *work* in it without CPT, OPT or separate sponsorship, and passive ownership is a line immigration
+> lawyers argue about. If the company will be your actual work, an Indian entity is the clean answer.
+
+> **Register where you actually live and work.** Forming in Wyoming while sitting in California does
+> not avoid California — you become a foreign LLC there and pay both. Out-of-state formation only
+> makes sense if you have no US physical presence at all.
+
+Fees read from [LLC University's 2026 comparison](https://www.llcuniversity.com/llc-annual-fees-by-state/)
+on 23 September 2026. They change — confirm with the state's Secretary of State before filing.
+
+| State | Form an LLC | Every year | Filing | Income tax | What matters here |
+|---|---|---|---|---|---|
+| Alabama | $200 | $50 | Annual | Taxed | Low annual cost, but a business privilege tax applies |
+| Alaska | $250 | $100 | Biennial | **None** | No income tax and no state sales tax |
+| Arizona | $50 | $0 | None | Taxed | No annual report at all — cheap to maintain |
+| Arkansas | $45 | $150 | Annual | Taxed | Cheap to form, pricier to keep |
+| California | $70 | $820 | Various | Taxed | $800 minimum franchise tax every year, even at zero revenue |
+| Colorado | $50 | $25 | Annual | Taxed | One of the cheapest states to run a small LLC |
+| Connecticut | $120 | $80 | Annual | Taxed | Middling on both cost and tax |
+| Delaware | $110 | $400 | Annual | Taxed | Default for VC-backed C-corps; overkill and costly for a solo LLC |
+| Florida | $125 | $138.75 | Annual | **None** | No income tax; popular with remote founders who actually move there |
+| Georgia | $110 | $60 | Annual | Taxed | Reasonable across the board |
+| Hawaii | $50 | $15 | Annual | Taxed | Very low fees, high cost of living |
+| Idaho | $100 | $0 | Annual | Taxed | Report required but free to file |
+| Illinois | $150 | $75 | Annual | Taxed | Higher formation cost than neighbours |
+| Indiana | $95 | $30 | Biennial | Taxed | Biennial filing keeps admin light |
+| Iowa | $50 | $30 | Biennial | Taxed | Cheap and low-maintenance |
+| Kansas | $160 | $50 | Annual | Taxed | Higher formation fee for the region |
+| Kentucky | $40 | $15 | Annual | Taxed | Second-cheapest formation in the country |
+| Louisiana | $125 | $35 | Annual | Taxed | Moderate throughout |
+| Maine | $175 | $85 | Annual | Taxed | Expensive for a small state |
+| Maryland | $100 | $300 | Annual | Taxed | $300 annual charge regardless of revenue |
+| Massachusetts | $500 | $500 | Annual | Taxed | The most expensive state to form and maintain an LLC |
+| Michigan | $50 | $25 | Annual | Taxed | Genuinely cheap on both counts |
+| Minnesota | $155 | $0 | Annual | Taxed | Free annual renewal |
+| Mississippi | $50 | $0 | Annual | Taxed | Cheap to form, free to renew |
+| Missouri | $50 | $0 | None | Taxed | No annual report requirement at all |
+| Montana | $35 | $20 | Annual | Taxed | Cheapest formation fee in the USA; no sales tax |
+| Nebraska | $100 | $13 | Biennial | Taxed | Lowest recurring cost of any state |
+| Nevada | $425 | $350 | Annual | **None** | No income tax, but the fees claw much of it back |
+| New Hampshire | $100 | $100 | Annual | **None** | Interest-and-dividends tax fully phased out from Jan 2025 — now zero income tax |
+| New Jersey | $100 | $75 | Annual | Taxed | Middle of the pack |
+| New Mexico | $50 | $0 | None | Taxed | No annual report and strong owner privacy — the cheapest to maintain |
+| New York | $200 | $9 | Biennial | Taxed | Tiny biennial fee, but the newspaper publication requirement can cost $1,000+ |
+| North Carolina | $125 | $200 | Annual | Taxed | High annual report fee |
+| North Dakota | $135 | $50 | Annual | Taxed | Unremarkable |
+| Ohio | $99 | $0 | None | Taxed | No annual report — very low maintenance |
+| Oklahoma | $100 | $25 | Annual | Taxed | Low recurring cost |
+| Oregon | $100 | $100 | Annual | Taxed | No sales tax, but income tax is high |
+| Pennsylvania | $125 | $7 | Annual | Taxed | $7 a year — nearly the cheapest upkeep anywhere |
+| Rhode Island | $150 | $50 | Annual | Taxed | Moderate |
+| South Carolina | $110 | $0 | None | Taxed | No annual report for LLCs |
+| South Dakota | $150 | $55 | Annual | **None** | No income tax; a genuine low-tax base if you live there |
+| Tennessee | $300 | $300 | Annual | **None** | No income tax, but among the priciest LLC fees |
+| Texas | $300 | $0 | Annual | **None** | No income tax, free annual report; franchise tax only above a high revenue threshold |
+| Utah | $59 | $18 | Annual | Taxed | Cheap, fast, and business-friendly |
+| Vermont | $155 | $45 | Annual | Taxed | Higher formation cost |
+| Virginia | $100 | $50 | Annual | Taxed | Straightforward and moderate |
+| Washington | $200 | $60 | Annual | **None** | No wage income tax, but 7% capital gains tax above roughly $270,000 |
+| Washington DC | $99 | $300 | Biennial | Taxed | Biennial $300; relevant if you take a DC-based fellowship |
+| West Virginia | $100 | $25 | Annual | Taxed | Low cost |
+| Wisconsin | $130 | $25 | Annual | Taxed | Low recurring cost |
+| Wyoming | $100 | $60 | Annual | **None** | No income tax, strong privacy — but only worth it if you have no presence elsewhere |
+
+### The short version
+
+- **Cheapest to form:** Montana $35, Kentucky $40, Arkansas $45.
+- **Cheapest to keep alive:** New Mexico $0, Missouri $0, Ohio $0, South Carolina $0, Pennsylvania $7, Nebraska $13.
+- **Most expensive:** Massachusetts $500 + $500, Nevada $425 + $350, California $70 + **$820 every year regardless of revenue**.
+- **No personal income tax:** Alaska, Florida, Nevada, New Hampshire, South Dakota, Tennessee, Texas, Washington, Wyoming. New Hampshire finished phasing out its interest-and-dividends tax in January 2025; Washington still taxes capital gains above roughly $270,000.
+- **Watch out:** New York's newspaper publication requirement can cost over $1,000 on top of the $200 filing fee.
+- **If you have no US presence at all:** New Mexico ($50 to form, $0 a year, strong privacy) is the cheapest legitimate option, with Wyoming a close second.
 
 ---
 
