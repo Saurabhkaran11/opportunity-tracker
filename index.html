@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Opportunity Tracker</title>
+<meta name="description" content="Fellowships, accelerators and paid programmes for graduates and working professionals, worldwide.">
+<style>
+  /* ---- tokens: light theme only, on purpose ---- */
+  :root{
+    --bg:#fbfaf8; --surface:#ffffff; --ink:#1a1a1a; --ink-2:#575350; --ink-3:#8a8580;
+    --line:#e6e2dd; --line-2:#efece8;
+    --accent:#2f6fdb; --accent-soft:#eaf1fd;
+    --paid:#0f7a4d; --paid-bg:#e7f5ee;
+    --free:#7a5a00; --free-bg:#fdf3dc;
+    --cost:#9a3d2f; --cost-bg:#fbeceA;
+    --urgent:#b8321f; --urgent-bg:#fdecea;
+    --radius:10px;
+    --font:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font);
+       font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 16px 80px}
+
+  /* ---- header ---- */
+  header{padding:44px 0 24px;border-bottom:1px solid var(--line)}
+  h1{font-size:30px;line-height:1.15;letter-spacing:-.02em;margin:0 0 8px;font-weight:650}
+  .sub{color:var(--ink-2);margin:0;max-width:66ch}
+  .asof{color:var(--ink-3);font-size:13px;margin-top:10px}
+
+  /* ---- stat strip ---- */
+  .stats{display:flex;flex-wrap:wrap;gap:10px;margin:22px 0 0}
+  .stat{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+        padding:10px 14px;min-width:104px}
+  .stat b{display:block;font-size:20px;font-weight:650;letter-spacing:-.01em}
+  .stat span{font-size:12px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.04em}
+
+  /* ---- controls ---- */
+  .controls{position:sticky;top:0;z-index:20;background:var(--bg);
+            padding:16px 0 12px;border-bottom:1px solid var(--line);margin-bottom:4px}
+  .searchrow{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+  input[type=search]{flex:1 1 260px;min-width:0;padding:10px 12px;font-size:15px;font-family:var(--font);
+    border:1px solid var(--line);border-radius:var(--radius);background:var(--surface);color:var(--ink)}
+  input[type=search]:focus{outline:2px solid var(--accent-soft);border-color:var(--accent)}
+  select{padding:10px 12px;font-size:14px;font-family:var(--font);border:1px solid var(--line);
+    border-radius:var(--radius);background:var(--surface);color:var(--ink)}
+  .chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+  .chip{border:1px solid var(--line);background:var(--surface);color:var(--ink-2);
+        padding:6px 11px;border-radius:999px;font-size:13px;cursor:pointer;font-family:var(--font);
+        transition:background .12s,border-color .12s,color .12s}
+  .chip:hover{border-color:var(--ink-3)}
+  .chip[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#fff}
+  .toggles{display:flex;flex-wrap:wrap;gap:14px;margin-top:10px;font-size:13px;color:var(--ink-2)}
+  .toggles label{display:flex;gap:6px;align-items:center;cursor:pointer}
+  .count{font-size:13px;color:var(--ink-3);margin-top:10px}
+  .linkbtn{background:none;border:none;color:var(--accent);cursor:pointer;font-size:13px;
+           padding:0;font-family:var(--font);text-decoration:underline}
+
+  /* ---- cards ---- */
+  .group{margin-top:30px}
+  .group h2{font-size:17px;margin:0 0 2px;font-weight:650;letter-spacing:-.01em}
+  .group p.gb{margin:0 0 12px;color:var(--ink-3);font-size:13px}
+  .grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fill,minmax(330px,1fr))}
+  .card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+        padding:16px;display:flex;flex-direction:column;gap:10px;position:relative}
+  .card.done{background:#f6f8f6;border-color:#cfe0d4}
+  .card h3{margin:0;font-size:15.5px;font-weight:600;line-height:1.35;padding-right:30px}
+  .card h3 a{color:var(--ink);text-decoration:none;border-bottom:1px solid var(--line-2)}
+  .card h3 a:hover{color:var(--accent);border-color:var(--accent)}
+  .tick{position:absolute;top:14px;right:14px;width:18px;height:18px;cursor:pointer;accent-color:var(--paid)}
+  .tags{display:flex;flex-wrap:wrap;gap:5px}
+  .tag{font-size:11.5px;padding:2.5px 8px;border-radius:999px;border:1px solid transparent;
+       letter-spacing:.01em;white-space:nowrap}
+  .t-paid{background:var(--paid-bg);color:var(--paid)}
+  .t-free{background:var(--free-bg);color:var(--free)}
+  .t-cost{background:var(--cost-bg);color:var(--cost)}
+  .t-neutral{background:#f1efec;color:var(--ink-2)}
+  .t-beg{background:var(--accent-soft);color:var(--accent)}
+  .row{font-size:13.2px;color:var(--ink-2);display:flex;gap:7px;align-items:flex-start}
+  .row b{color:var(--ink);font-weight:600;flex:0 0 auto;min-width:74px}
+  .dl{font-size:13.2px;padding:8px 10px;border-radius:8px;background:#f5f3f0;color:var(--ink-2)}
+  .dl.soon{background:var(--urgent-bg);color:var(--urgent);font-weight:600}
+  .dl .days{font-variant-numeric:tabular-nums}
+  .links{display:flex;flex-wrap:wrap;gap:8px;margin-top:2px}
+  .links a{font-size:12.5px;text-decoration:none;color:var(--accent);
+           border:1px solid var(--accent-soft);background:var(--accent-soft);
+           padding:4px 9px;border-radius:999px}
+  .links a:hover{background:#dde9fb}
+  .vf{font-size:11.5px;color:var(--ink-3)}
+
+  .empty{padding:40px 0;color:var(--ink-3);text-align:center}
+  footer{margin-top:52px;padding-top:20px;border-top:1px solid var(--line);
+         color:var(--ink-3);font-size:13px}
+  footer a{color:var(--accent)}
+  @media (max-width:560px){
+    h1{font-size:24px} header{padding:28px 0 18px}
+    .grid{grid-template-columns:1fr}
+    .row b{min-width:66px}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1>Opportunity Tracker</h1>
+  <p class="sub">Fellowships, accelerators, residencies and paid platforms for <strong>graduates and working
+  professionals</strong> — the equivalents of the Horowitz Andreessen Academy for people who are past
+  high school. Filter by whether it pays, whether it is remote, and how close the deadline is.</p>
+  <p class="asof">Research current as of <strong>23 September 2026</strong>. Rows marked
+  <em>confirmed</em> had their deadline checked on that date; the rest are rolling or unpublished for 2027 —
+  always click through before relying on a date.</p>
+  <div class="stats" id="stats"></div>
+</header>
+
+<div class="controls">
+  <div class="searchrow">
+    <input type="search" id="q" placeholder="Search programme, region, eligibility…" autocomplete="off">
+    <select id="sort">
+      <option value="deadline">Sort: soonest deadline</option>
+      <option value="name">Sort: name A–Z</option>
+      <option value="pay">Sort: pays you first</option>
+    </select>
+  </div>
+  <div class="chips" id="trackChips"></div>
+  <div class="toggles">
+    <label><input type="checkbox" id="fPaid"> Only ones that pay me</label>
+    <label><input type="checkbox" id="fRemote"> Only fully remote</label>
+    <label><input type="checkbox" id="fBeginner"> Only beginner-friendly</label>
+    <label><input type="checkbox" id="fVerified"> Only confirmed deadlines</label>
+    <label><input type="checkbox" id="fSaved"> Only my shortlist</label>
+  </div>
+  <div class="count"><span id="count"></span> · <button class="linkbtn" id="reset">reset filters</button>
+    · <button class="linkbtn" id="clearSaved">clear my shortlist</button></div>
+</div>
+
+<main id="out"></main>
+
+<footer>
+  <p>Built as a personal tracker. Tick the box on any card to add it to your shortlist —
+  it saves in this browser only, nothing is sent anywhere.</p>
+  <p>Full written research, including the free-versus-paid certification breakdown, is in the
+  <a href="https://github.com/Saurabhkaran11/opportunity-tracker#readme">README of this repository</a>.</p>
+</footer>
+
+</div>
+
+<script src="data.js"></script>
+<script>
+/* ============================================================================
+   app.js logic — kept in one file so the page works from file:// with no build
+   ============================================================================ */
+
+const TODAY = new Date('2026-09-23T00:00:00');
+
+/* ---- shortlist persistence ------------------------------------------------
+   localStorage can throw in private windows, so every access is guarded.
+   Example: saved = {"Recurse Center": true}
+   --------------------------------------------------------------------------- */
+const KEY = 'opp-tracker-shortlist';
+function loadSaved(){
+  try { return JSON.parse(localStorage.getItem(KEY) || '{}'); }
+  catch(e){ return {}; }
+}
+function persist(){
+  try { localStorage.setItem(KEY, JSON.stringify(saved)); } catch(e){ /* ignore */ }
+}
+let saved = loadSaved();
+
+/* ---- filter state --------------------------------------------------------- */
+const state = {
+  q:'', tracks:new Set(), sort:'deadline',
+  paid:false, remote:false, beginner:false, verified:false, savedOnly:false
+};
+
+/* ---- helpers -------------------------------------------------------------- */
+
+// daysUntil('2026-11-02') -> 40   (negative once the date has passed)
+function daysUntil(iso){
+  if(!iso) return null;
+  const d = new Date(iso + 'T00:00:00');
+  return Math.round((d - TODAY) / 86400000);
+}
+
+function payClass(pay){
+  if(pay === 'Paid') return 't-paid';
+  if(pay === 'Free') return 't-free';
+  return 't-cost';
+}
+function payLabel(pay){
+  if(pay === 'Paid') return 'Pays you';
+  if(pay === 'Free') return 'Free, unpaid';
+  return 'You pay';
+}
+
+/* ---- rendering ------------------------------------------------------------ */
+
+function cardHTML(p){
+  const days = daysUntil(p.dl);
+  // "soon" = a real date inside the next 45 days, so it earns the red treatment
+  const soon = days !== null && days >= 0 && days <= 45;
+  let dlText = p.deadline;
+  if(days !== null && days >= 0){
+    dlText += ` — <span class="days">${days} day${days === 1 ? '' : 's'} away</span>`;
+  }
+  const isSaved = !!saved[p.name];
+
+  const links = [
+    `<a href="${p.url}" target="_blank" rel="noopener">Apply / info →</a>`,
+    p.learn ? `<a href="${p.learn.u}" target="_blank" rel="noopener">Learn: ${p.learn.t}</a>` : '',
+    p.cert  ? `<a href="${p.cert.u}"  target="_blank" rel="noopener">Cert: ${p.cert.t}</a>`  : ''
+  ].join('');
+
+  return `
+  <article class="card ${isSaved ? 'done' : ''}">
+    <input class="tick" type="checkbox" data-name="${encodeURIComponent(p.name)}"
+           ${isSaved ? 'checked' : ''} title="Add to my shortlist" aria-label="Shortlist ${p.name}">
+    <h3><a href="${p.url}" target="_blank" rel="noopener">${p.name}</a></h3>
+    <div class="tags">
+      <span class="tag ${payClass(p.pay)}">${payLabel(p.pay)}</span>
+      <span class="tag t-neutral">${p.remote}</span>
+      ${p.beginner ? '<span class="tag t-beg">Beginner-friendly</span>' : ''}
+    </div>
+    <div class="row"><b>Region</b><span>${p.region}</span></div>
+    <div class="row"><b>Money</b><span>${p.payNote}</span></div>
+    <div class="row"><b>Eligible</b><span>${p.elig}</span></div>
+    <div class="row"><b>Leads to</b><span>${p.opens}</span></div>
+    <div class="dl ${soon ? 'soon' : ''}">${dlText}
+      <div class="vf">${p.verified ? 'Deadline confirmed 23 Sep 2026' : 'Not published for 2027 — check the page'}</div>
+    </div>
+    <div class="links">${links}</div>
+  </article>`;
+}
+
+function matches(p){
+  if(state.paid     && p.pay !== 'Paid') return false;
+  if(state.remote   && p.remote !== 'Remote') return false;
+  if(state.beginner && !p.beginner) return false;
+  if(state.verified && !p.verified) return false;
+  if(state.savedOnly && !saved[p.name]) return false;
+  if(state.tracks.size && !state.tracks.has(p.track)) return false;
+  if(state.q){
+    const hay = (p.name + p.region + p.elig + p.opens + p.payNote + p.deadline).toLowerCase();
+    if(!hay.includes(state.q)) return false;
+  }
+  return true;
+}
+
+function sortRows(rows){
+  if(state.sort === 'name') return rows.sort((a,b) => a.name.localeCompare(b.name));
+  if(state.sort === 'pay')  return rows.sort((a,b) =>
+      (a.pay === 'Paid' ? 0 : 1) - (b.pay === 'Paid' ? 0 : 1) || a.name.localeCompare(b.name));
+  // deadline: real upcoming dates first (soonest wins), then everything undated
+  return rows.sort((a,b) => {
+    const A = daysUntil(a.dl), B = daysUntil(b.dl);
+    const ak = (A === null || A < 0) ? 1e9 : A;
+    const bk = (B === null || B < 0) ? 1e9 : B;
+    return ak - bk || a.name.localeCompare(b.name);
+  });
+}
+
+function render(){
+  const rows = sortRows(PROGRAMMES.filter(matches));
+  const out = document.getElementById('out');
+
+  document.getElementById('count').textContent =
+    `${rows.length} of ${PROGRAMMES.length} shown`;
+
+  if(!rows.length){
+    out.innerHTML = '<p class="empty">Nothing matches those filters. Try resetting.</p>';
+    return;
+  }
+
+  // group by track so the page still reads as a structured list, not a soup
+  const byTrack = {};
+  rows.forEach(p => (byTrack[p.track] = byTrack[p.track] || []).push(p));
+
+  out.innerHTML = Object.keys(TRACKS)
+    .filter(t => byTrack[t])
+    .map(t => `
+      <section class="group">
+        <h2>${TRACKS[t].label} <span style="color:var(--ink-3);font-weight:400">(${byTrack[t].length})</span></h2>
+        <p class="gb">${TRACKS[t].blurb}</p>
+        <div class="grid">${byTrack[t].map(cardHTML).join('')}</div>
+      </section>`)
+    .join('');
+
+  // re-bind the shortlist ticks after every re-render
+  out.querySelectorAll('.tick').forEach(box => {
+    box.addEventListener('change', e => {
+      const name = decodeURIComponent(e.target.dataset.name);
+      if(e.target.checked) saved[name] = true; else delete saved[name];
+      persist();
+      renderStats();
+      render();
+    });
+  });
+}
+
+function renderStats(){
+  const paid   = PROGRAMMES.filter(p => p.pay === 'Paid').length;
+  const remote = PROGRAMMES.filter(p => p.remote === 'Remote').length;
+  const beg    = PROGRAMMES.filter(p => p.beginner).length;
+  // "urgent" = a confirmed date within 45 days of 23 Sep 2026
+  const urgent = PROGRAMMES.filter(p => {
+    const d = daysUntil(p.dl); return d !== null && d >= 0 && d <= 45;
+  }).length;
+  const mine   = Object.keys(saved).length;
+
+  document.getElementById('stats').innerHTML = `
+    <div class="stat"><b>${PROGRAMMES.length}</b><span>programmes</span></div>
+    <div class="stat"><b>${paid}</b><span>pay you</span></div>
+    <div class="stat"><b>${remote}</b><span>fully remote</span></div>
+    <div class="stat"><b>${beg}</b><span>beginner ok</span></div>
+    <div class="stat"><b>${urgent}</b><span>next 45 days</span></div>
+    <div class="stat"><b>${mine}</b><span>my shortlist</span></div>`;
+}
+
+/* ---- wiring -------------------------------------------------------------- */
+function buildChips(){
+  const box = document.getElementById('trackChips');
+  box.innerHTML = Object.entries(TRACKS).map(([k,v]) =>
+    `<button class="chip" data-track="${k}" aria-pressed="false">${v.label}</button>`).join('');
+  box.querySelectorAll('.chip').forEach(c => {
+    c.addEventListener('click', () => {
+      const t = c.dataset.track;
+      if(state.tracks.has(t)){ state.tracks.delete(t); c.setAttribute('aria-pressed','false'); }
+      else { state.tracks.add(t); c.setAttribute('aria-pressed','true'); }
+      render();
+    });
+  });
+}
+
+document.getElementById('q').addEventListener('input', e => {
+  state.q = e.target.value.trim().toLowerCase(); render();
+});
+document.getElementById('sort').addEventListener('change', e => {
+  state.sort = e.target.value; render();
+});
+[['fPaid','paid'],['fRemote','remote'],['fBeginner','beginner'],
+ ['fVerified','verified'],['fSaved','savedOnly']].forEach(([id,key]) => {
+  document.getElementById(id).addEventListener('change', e => {
+    state[key] = e.target.checked; render();
+  });
+});
+document.getElementById('reset').addEventListener('click', () => {
+  state.q=''; state.tracks.clear(); state.sort='deadline';
+  state.paid=state.remote=state.beginner=state.verified=state.savedOnly=false;
+  document.getElementById('q').value='';
+  document.getElementById('sort').value='deadline';
+  ['fPaid','fRemote','fBeginner','fVerified','fSaved']
+    .forEach(id => document.getElementById(id).checked=false);
+  document.querySelectorAll('.chip').forEach(c => c.setAttribute('aria-pressed','false'));
+  render();
+});
+document.getElementById('clearSaved').addEventListener('click', () => {
+  if(!confirm('Clear your whole shortlist?')) return;
+  saved = {}; persist(); renderStats(); render();
+});
+
+buildChips();
+renderStats();
+render();
+</script>
+</body>
+</html>
