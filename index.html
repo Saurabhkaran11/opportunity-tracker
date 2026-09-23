@@ -24,7 +24,11 @@
   .wrap{max-width:1180px;margin:0 auto;padding:0 16px 80px}
 
   /* ---- header ---- */
-  header{padding:44px 0 24px;border-bottom:1px solid var(--line)}
+  header{padding:40px 0 24px;border-bottom:1px solid var(--line)}
+  .nav{display:flex;gap:14px;font-size:13.5px;margin-bottom:18px;flex-wrap:wrap}
+  .nav a{text-decoration:none;padding:5px 11px;border:1px solid var(--line);
+         border-radius:999px;background:var(--surface);color:var(--ink-2)}
+  .nav a.on{background:var(--accent);border-color:var(--accent);color:#fff}
   h1{font-size:30px;line-height:1.15;letter-spacing:-.02em;margin:0 0 8px;font-weight:650}
   .sub{color:var(--ink-2);margin:0;max-width:66ch}
   .asof{color:var(--ink-3);font-size:13px;margin-top:10px}
@@ -182,6 +186,11 @@
 <div class="wrap">
 
 <header>
+  <nav class="nav">
+    <a href="index.html" class="on">All programmes</a>
+    <a href="plan.html">90-day plan</a>
+    <a href="https://github.com/Saurabhkaran11/opportunity-tracker#readme">Full research</a>
+  </nav>
   <h1>Opportunity Tracker</h1>
   <p class="sub">Fellowships, accelerators, residencies and paid platforms for <strong>graduates and working
   professionals</strong> — the equivalents of the Horowitz Andreessen Academy for people who are past

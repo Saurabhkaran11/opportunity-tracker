@@ -1,0 +1,30 @@
+{
+  "updated": "2026-09-23",
+  "note": "Appended daily by a scheduled agent. Newest first. Each item was checked on the date shown.",
+  "items": [
+    {
+      "found": "2026-09-23",
+      "kind": "deadline",
+      "name": "IAPS AI Policy Fellowship — Spring 2027",
+      "url": "https://www.iaps.ai/fellowship",
+      "what": "Closes 27 Sep 2026. Fully funded, $18K fellows / $24K senior, global applications, two weeks in DC.",
+      "dl": "2026-09-27"
+    },
+    {
+      "found": "2026-09-23",
+      "kind": "conference",
+      "name": "Bengaluru Tech Summit 2026",
+      "url": "https://www.bengalurutechsummit.com/",
+      "what": "17–19 Nov 2026 at BIEC. Asia's largest tech summit; the key India networking event this year.",
+      "dl": "2026-11-17"
+    },
+    {
+      "found": "2026-09-23",
+      "kind": "conference",
+      "name": "Citadel Conference Travel Grant",
+      "url": "https://www.citadel.com/careers/programs-and-events/conference-travel-grant/",
+      "what": "Fully covers registration, flights, hotel and food for NeurIPS, ICML and Grace Hopper. Requires current enrolment.",
+      "dl": null
+    }
+  ]
+}

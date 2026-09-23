@@ -1,6 +1,9 @@
 # Opportunity Tracker — programmes for graduates & working professionals
 
-**Live page:** https://Saurabhkaran11.github.io/opportunity-tracker/
+**Live pages**
+
+- [All programmes](https://saurabhkaran11.github.io/opportunity-tracker/) — 135 rows, filterable, cards or table
+- [90-day plan](https://saurabhkaran11.github.io/opportunity-tracker/plan.html) — 13 weeks, 65 tasks, plus a daily feed of new fellowships and conferences
 
 An interactive tracker plus the full written research behind it. The starting question was:
 *the [Horowitz Andreessen Academy](https://www.theacademysf.com/admissions) in San Francisco looks great —
@@ -35,6 +38,8 @@ Research current as of **23 September 2026**.
 - [Remote vs in person](#remote-vs-in-person)
 - [Certifications: free vs paid](#certifications-free-vs-paid)
 - [The week-one plan](#the-week-one-plan)
+- [The 90-day plan](#the-90-day-plan)
+- [Daily updates](#daily-updates)
 - [Running it locally](#running-it-locally)
 
 ---
@@ -581,16 +586,70 @@ None of it requires a visa, a degree, or anyone's permission.
 
 ---
 
+## The 90-day plan
+
+[plan.html](https://saurabhkaran11.github.io/opportunity-tracker/plan.html) runs
+**Wed 23 Sep 2026 → Mon 21 Dec 2026**: thirteen weeks, sixty-five tasks, one focus line per week.
+The current week is highlighted and ticks persist in your browser.
+
+| Week | Dates | Theme | Focus |
+|---|---|---|---|
+| 1 | 23–27 Sep | Move on the thing that expires | The IAPS deadline is the only urgent item in three months |
+| 2 | 28 Sep–4 Oct | Get a surface where money can reach you | A profile that can receive work beats another course |
+| 3 | 5–11 Oct | Submit things | Applications you do not send have a 0% rate |
+| 4 | 12–18 Oct | First dollar, first speech | Getting paid once changes how you think |
+| 5 | 19–25 Oct | Write the thing down | Articulating an idea is worth it even unsubmitted |
+| 6 | 26 Oct–1 Nov | Decide and send | Submit YC or consciously decide not to |
+| 7 | 2–8 Nov | Second income stream | One stream is a job; two is independence |
+| 8 | 9–15 Nov | Structure decisions | Work out how you hold money before there is much |
+| 9 | 16–22 Nov | Launch and show up | Ship the product, be in a room with people |
+| 10 | 23–29 Nov | Honest review | Which stream earned, and which just ate time? |
+| 11 | 30 Nov–6 Dec | Go deeper, not wider | Double down; resist starting something new |
+| 12 | 7–13 Dec | Applications batch two | You now have evidence — reapply |
+| 13 | 14–21 Dec | 90-day close | Decide the next 90 days in writing |
+
+The page also carries a dated **what is coming up** list — deadlines and conferences sorted soonest
+first, filterable to free or funded routes only.
+
+---
+
+## Daily updates
+
+A scheduled agent runs **every morning at 08:00 local time** and appends new finds to
+[`feed.json`](feed.json), which the plan page renders under *Added recently*.
+
+Each run searches for fellowships, residencies, conferences with travel grants, and paid remote
+platforms; verifies each on its official page; skips duplicates; then commits and pushes. Rules it
+follows: never invent a deadline, never add anything requiring US citizenship, and prefer things that
+are free to apply or pay a stipend. If a run finds nothing worth adding, it changes nothing.
+
+The task lives at `~/.claude/scheduled-tasks/daily-fellowship-conference-scan/SKILL.md`. It runs while
+the Claude desktop app is open; if the app was closed when it was due, it runs on next launch.
+Edit or delete it from the **Scheduled** section of the sidebar.
+
+---
+
 ## Running it locally
 
 ```bash
 git clone https://github.com/Saurabhkaran11/opportunity-tracker.git
 cd opportunity-tracker
-open index.html
+python3 -m http.server 4173
 ```
 
-No build step, no dependencies. `data.js` holds every row — edit that file to add a programme,
-and the page picks it up on reload. Your shortlist ticks are stored in `localStorage`, so they
+Then open http://localhost:4173. Use a server rather than opening the file directly — the plan page
+fetches `feed.json`, which browsers block on `file://`.
+
+| File | What it holds |
+|---|---|
+| `data.js` | The 96 core programmes, plus the nationality and visa rules |
+| `income.js` | 39 income-stream and international-business rows |
+| `states.js` | All 50 states plus DC |
+| `conferences.js` | Hand-checked conferences and dated deadlines |
+| `plan.js` | The 13 weeks and 65 tasks |
+| `feed.json` | Appended daily by the scheduled agent |
+
+No build step, no dependencies. Edit a data file and the page picks it up on reload. Your shortlist ticks are stored in `localStorage`, so they
 stay in your browser and are never uploaded.
 
 ---

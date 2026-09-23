@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>90-Day Plan</title>
+<meta name="description" content="A dated 90-day action plan with weekly tasks, plus a daily feed of fellowships and conferences.">
+<style>
+  :root{
+    --bg:#fbfaf8; --surface:#ffffff; --ink:#1a1a1a; --ink-2:#575350; --ink-3:#8a8580;
+    --line:#e6e2dd; --line-2:#efece8;
+    --accent:#2f6fdb; --accent-soft:#eaf1fd;
+    --paid:#0f7a4d; --paid-bg:#e7f5ee;
+    --urgent:#b8321f; --urgent-bg:#fdecea;
+    --free:#7a5a00; --free-bg:#fdf3dc;
+    --radius:10px;
+    --font:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font);
+       font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1000px;margin:0 auto;padding:0 16px 80px}
+  a{color:var(--accent)}
+
+  header{padding:40px 0 22px;border-bottom:1px solid var(--line)}
+  .nav{display:flex;gap:14px;font-size:13.5px;margin-bottom:18px;flex-wrap:wrap}
+  .nav a{text-decoration:none;padding:5px 11px;border:1px solid var(--line);
+         border-radius:999px;background:var(--surface);color:var(--ink-2)}
+  .nav a.on{background:var(--accent);border-color:var(--accent);color:#fff}
+  h1{font-size:29px;line-height:1.15;letter-spacing:-.02em;margin:0 0 8px;font-weight:650}
+  .sub{color:var(--ink-2);margin:0;max-width:66ch}
+
+  .progress{margin-top:20px;background:var(--surface);border:1px solid var(--line);
+            border-radius:var(--radius);padding:14px 16px}
+  .bar{height:8px;background:var(--line-2);border-radius:99px;overflow:hidden;margin:9px 0 6px}
+  .bar i{display:block;height:100%;background:var(--paid);transition:width .25s}
+  .pmeta{display:flex;justify-content:space-between;font-size:13px;color:var(--ink-3);flex-wrap:wrap;gap:8px}
+  .pmeta b{color:var(--ink)}
+
+  h2.sec{font-size:19px;margin:38px 0 4px;font-weight:650;letter-spacing:-.01em}
+  p.secsub{margin:0 0 14px;color:var(--ink-3);font-size:13.4px}
+
+  .week{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+        padding:16px 18px;margin-bottom:12px}
+  .week.now{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
+  .week.past{opacity:.6}
+  .whead{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
+  .wn{font-size:11.5px;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-3);font-weight:600}
+  .wt{font-size:16px;font-weight:650;margin:2px 0 0;letter-spacing:-.01em}
+  .wdates{font-size:12.5px;color:var(--ink-3);white-space:nowrap}
+  .badge{font-size:11px;padding:2px 8px;border-radius:999px;background:var(--accent);color:#fff;
+         text-transform:uppercase;letter-spacing:.05em;font-weight:600}
+  .focus{margin:10px 0 12px;padding:9px 11px;background:#f5f3f0;border-radius:8px;
+         font-size:13.2px;color:var(--ink-2)}
+  .focus b{color:var(--ink)}
+  ul.tasks{list-style:none;margin:0;padding:0}
+  ul.tasks li{display:flex;gap:9px;align-items:flex-start;padding:7px 0;
+              border-top:1px solid var(--line-2);font-size:14px}
+  ul.tasks li:first-child{border-top:none}
+  ul.tasks input{margin-top:3px;width:16px;height:16px;flex:0 0 auto;cursor:pointer;accent-color:var(--paid)}
+  ul.tasks label{cursor:pointer}
+  ul.tasks li.done label{text-decoration:line-through;color:var(--ink-3)}
+  .wprog{font-size:12.5px;color:var(--ink-3);margin-top:10px}
+
+  .ev{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+      padding:13px 15px;margin-bottom:9px}
+  .ev.soon{border-color:#f0c4bd;background:#fffaf9}
+  .evtop{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:baseline}
+  .ev h3{margin:0;font-size:15px;font-weight:600}
+  .ev h3 a{color:var(--ink);text-decoration:none;border-bottom:1px solid var(--line)}
+  .ev h3 a:hover{color:var(--accent);border-color:var(--accent)}
+  .when{font-size:12.8px;color:var(--ink-2);white-space:nowrap;font-variant-numeric:tabular-nums}
+  .when.soon{color:var(--urgent);font-weight:600}
+  .ev p{margin:6px 0 0;font-size:13.3px;color:var(--ink-2)}
+  .ev .meta{font-size:12.2px;color:var(--ink-3);margin-top:5px}
+  .kind{font-size:11px;padding:2px 7px;border-radius:999px;margin-right:6px}
+  .k-conf{background:var(--accent-soft);color:var(--accent)}
+  .k-dl{background:var(--free-bg);color:var(--free)}
+  .filters{display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap}
+  .fbtn{border:1px solid var(--line);background:var(--surface);color:var(--ink-2);
+        padding:6px 12px;border-radius:999px;font-size:13px;cursor:pointer;font-family:var(--font)}
+  .fbtn[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#fff}
+
+  .feeditem{border-left:3px solid var(--accent-soft);padding:8px 0 8px 12px;margin-bottom:10px}
+  .feeddate{font-size:11.5px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.05em}
+  .feednote{background:var(--surface);border:1px dashed var(--line);border-radius:var(--radius);
+            padding:12px 14px;font-size:13.2px;color:var(--ink-2)}
+
+  footer{margin-top:50px;padding-top:20px;border-top:1px solid var(--line);
+         color:var(--ink-3);font-size:13px}
+  @media (max-width:560px){ h1{font-size:23px} .wrap{padding-bottom:50px} }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <nav class="nav">
+    <a href="index.html">All programmes</a>
+    <a href="plan.html" class="on">90-day plan</a>
+    <a href="https://github.com/Saurabhkaran11/opportunity-tracker#readme">Full research</a>
+  </nav>
+  <h1>90-Day Plan</h1>
+  <p class="sub">Wednesday 23 September to Monday 21 December 2026. Thirteen weeks, sixty-five tasks,
+  each one small enough to finish. The current week is highlighted; ticks save in this browser.</p>
+  <div class="progress">
+    <div class="pmeta"><span><b id="pdone">0</b> of <b id="ptotal">0</b> tasks done</span>
+      <span id="pday"></span></div>
+    <div class="bar"><i id="pbar" style="width:0%"></i></div>
+    <div class="pmeta"><span id="pweek"></span>
+      <button class="fbtn" id="clear" style="padding:2px 9px;font-size:12px">reset ticks</button></div>
+  </div>
+</header>
+
+<h2 class="sec">What is coming up</h2>
+<p class="secsub">Deadlines and conferences, soonest first. Anything inside 45 days is flagged.</p>
+<div class="filters">
+  <button class="fbtn" id="fAll" aria-pressed="true">Everything</button>
+  <button class="fbtn" id="fDl" aria-pressed="false">Deadlines only</button>
+  <button class="fbtn" id="fConf" aria-pressed="false">Conferences only</button>
+  <button class="fbtn" id="fFree" aria-pressed="false">Free or funded routes</button>
+</div>
+<div id="events"></div>
+
+<h2 class="sec">Added recently</h2>
+<p class="secsub">A scheduled agent checks for new fellowships and conferences each morning and appends them here.</p>
+<div id="feed"><div class="feednote">Loading the feed…</div></div>
+
+<h2 class="sec">The thirteen weeks</h2>
+<p class="secsub">One focus per week. If a week goes badly, do the focus line and let the rest go.</p>
+<div id="weeks"></div>
+
+<footer>
+  <p>Ticks are stored in this browser only. Dates were confirmed on 23 September 2026 — reconfirm
+  anything before you plan travel or money around it.</p>
+</footer>
+
+</div>
+
+<script src="conferences.js"></script>
+<script src="plan.js"></script>
+<script>
+const TODAY = new Date('2026-09-23T00:00:00');
+const KEY = 'opp-plan-ticks';
+
+let ticks = (() => { try { return JSON.parse(localStorage.getItem(KEY) || '{}'); }
+                     catch(e){ return {}; } })();
+function persist(){ try { localStorage.setItem(KEY, JSON.stringify(ticks)); } catch(e){} }
+
+function days(iso){
+  if(!iso) return null;
+  return Math.round((new Date(iso + 'T00:00:00') - TODAY) / 86400000);
+}
+function fmt(iso){
+  return new Date(iso + 'T00:00:00')
+    .toLocaleDateString('en-GB', { day:'numeric', month:'short' });
+}
+
+/* ---- events ------------------------------------------------------------- */
+let evFilter = 'all';
+
+function renderEvents(){
+  const rows = EVENTS
+    .filter(e => {
+      if(evFilter === 'dl')   return e.kind === 'deadline';
+      if(evFilter === 'conf') return e.kind === 'conference';
+      if(evFilter === 'free') return /free|grant|funded|volunteer|waive|scholarship/i.test(e.cost);
+      return true;
+    })
+    .slice()
+    .sort((a,b) => {
+      const A = days(a.dl), B = days(b.dl);
+      return ((A === null || A < 0) ? 1e9 : A) - ((B === null || B < 0) ? 1e9 : B);
+    });
+
+  document.getElementById('events').innerHTML = rows.map(e => {
+    const d = days(e.dl);
+    const soon = d !== null && d >= 0 && d <= 45;
+    return `
+    <article class="ev ${soon ? 'soon' : ''}">
+      <div class="evtop">
+        <h3><span class="kind ${e.kind === 'conference' ? 'k-conf' : 'k-dl'}">${
+          e.kind === 'conference' ? 'Conference' : 'Deadline'}</span>
+          <a href="${e.url}" target="_blank" rel="noopener">${e.name}</a></h3>
+        <span class="when ${soon ? 'soon' : ''}">${e.when}${
+          d !== null && d >= 0 ? ` · ${d}d` : ''}</span>
+      </div>
+      <p>${e.why}</p>
+      <div class="meta">${e.where} · ${e.cost}${
+        e.verified ? '' : ' · <em>dates unconfirmed</em>'}</div>
+    </article>`;
+  }).join('') || '<p class="feednote">Nothing matches that filter.</p>';
+}
+
+[['fAll','all'],['fDl','dl'],['fConf','conf'],['fFree','free']].forEach(([id,val]) => {
+  document.getElementById(id).addEventListener('click', () => {
+    evFilter = val;
+    ['fAll','fDl','fConf','fFree'].forEach(x =>
+      document.getElementById(x).setAttribute('aria-pressed', x === id));
+    renderEvents();
+  });
+});
+
+/* ---- the daily feed ------------------------------------------------------ */
+fetch('feed.json?t=' + Date.now())
+  .then(r => r.json())
+  .then(d => {
+    document.getElementById('feed').innerHTML =
+      `<p class="secsub">Last updated ${d.updated}. ${d.items.length} entries.</p>` +
+      d.items.map(i => `
+        <div class="feeditem">
+          <div class="feeddate">${i.found} · ${i.kind}</div>
+          <strong><a href="${i.url}" target="_blank" rel="noopener">${i.name}</a></strong>
+          <div style="font-size:13.3px;color:var(--ink-2)">${i.what}</div>
+        </div>`).join('');
+  })
+  .catch(() => {
+    // fetch fails on file:// — say so rather than showing a broken section
+    document.getElementById('feed').innerHTML =
+      `<div class="feednote">The feed loads over http. Open this page from the published site,
+       or run a local server, to see the daily additions.</div>`;
+  });
+
+/* ---- the weeks ----------------------------------------------------------- */
+function weekState(w){
+  const from = days(w.from), to = days(w.to);
+  if(to < 0) return 'past';
+  if(from <= 0 && to >= 0) return 'now';
+  return 'future';
+}
+
+function renderWeeks(){
+  document.getElementById('weeks').innerHTML = WEEKS.map(w => {
+    const st = weekState(w);
+    const doneCount = w.tasks.filter(t => ticks[t[0]]).length;
+    return `
+    <section class="week ${st}">
+      <div class="whead">
+        <div>
+          <div class="wn">Week ${w.n} ${st === 'now' ? '<span class="badge">This week</span>' : ''}</div>
+          <h3 class="wt">${w.title}</h3>
+        </div>
+        <span class="wdates">${fmt(w.from)} – ${fmt(w.to)}</span>
+      </div>
+      <div class="focus"><b>Focus:</b> ${w.focus}</div>
+      <ul class="tasks">
+        ${w.tasks.map(t => `
+          <li class="${ticks[t[0]] ? 'done' : ''}">
+            <input type="checkbox" id="${t[0]}" ${ticks[t[0]] ? 'checked' : ''}>
+            <label for="${t[0]}">${t[1]}${
+              t[2] ? ` — <a href="${t[2]}" target="_blank" rel="noopener">open</a>` : ''}</label>
+          </li>`).join('')}
+      </ul>
+      <div class="wprog">${doneCount} of ${w.tasks.length} done this week</div>
+    </section>`;
+  }).join('');
+
+  document.querySelectorAll('.tasks input').forEach(box => {
+    box.addEventListener('change', e => {
+      if(e.target.checked) ticks[e.target.id] = true; else delete ticks[e.target.id];
+      persist(); renderWeeks(); renderProgress();
+    });
+  });
+}
+
+function renderProgress(){
+  const total = WEEKS.reduce((a,w) => a + w.tasks.length, 0);
+  const done  = Object.keys(ticks).length;
+  document.getElementById('ptotal').textContent = total;
+  document.getElementById('pdone').textContent = done;
+  document.getElementById('pbar').style.width = (total ? (done/total*100) : 0) + '%';
+
+  const cur = WEEKS.find(w => weekState(w) === 'now');
+  const elapsed = Math.max(0, days(PLAN_START) * -1) + 1;
+  document.getElementById('pday').textContent = `Day ${elapsed} of 90`;
+  document.getElementById('pweek').textContent = cur
+    ? `You are in week ${cur.n}: ${cur.title}`
+    : 'Outside the plan window';
+}
+
+document.getElementById('clear').addEventListener('click', () => {
+  if(!confirm('Clear every tick on the plan?')) return;
+  ticks = {}; persist(); renderWeeks(); renderProgress();
+});
+
+renderEvents();
+renderWeeks();
+renderProgress();
+</script>
+</body>
+</html>
