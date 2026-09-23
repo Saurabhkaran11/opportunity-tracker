@@ -89,6 +89,42 @@
   .links a:hover{background:#dde9fb}
   .vf{font-size:11.5px;color:var(--ink-3)}
 
+  /* ---- view switch ---- */
+  .viewswitch{display:flex;border:1px solid var(--line);border-radius:var(--radius);
+              overflow:hidden;background:var(--surface);flex:0 0 auto}
+  .vbtn{border:none;background:none;padding:10px 15px;font-size:14px;font-family:var(--font);
+        color:var(--ink-2);cursor:pointer;transition:background .12s,color .12s}
+  .vbtn + .vbtn{border-left:1px solid var(--line)}
+  .vbtn:hover{background:#f5f3f0}
+  .vbtn[aria-pressed="true"]{background:var(--accent);color:#fff}
+
+  /* ---- table view ---- */
+  .tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:var(--radius);
+             background:var(--surface);-webkit-overflow-scrolling:touch}
+  table{border-collapse:collapse;width:100%;min-width:1080px;font-size:13.2px}
+  thead th{position:sticky;top:0;background:#f7f5f2;text-align:left;font-weight:600;
+           font-size:12px;letter-spacing:.03em;text-transform:uppercase;color:var(--ink-3);
+           padding:10px 12px;border-bottom:1px solid var(--line);white-space:nowrap;z-index:2}
+  tbody td{padding:11px 12px;border-bottom:1px solid var(--line-2);vertical-align:top;color:var(--ink-2)}
+  tbody tr:last-child td{border-bottom:none}
+  tbody tr:hover{background:#faf9f7}
+  tbody tr.done{background:#f4f8f5}
+  tbody tr.done:hover{background:#eef4f0}
+  td.nm{min-width:190px}
+  td.nm a{color:var(--ink);font-weight:600;text-decoration:none;border-bottom:1px solid var(--line)}
+  td.nm a:hover{color:var(--accent);border-color:var(--accent)}
+  td.el{min-width:240px}
+  td.op{min-width:190px}
+  td.dlc{min-width:170px;white-space:normal}
+  td.dlc.soon{color:var(--urgent);font-weight:600}
+  td.lk a{display:block;white-space:nowrap;color:var(--accent);text-decoration:none;font-size:12.5px}
+  td.lk a:hover{text-decoration:underline}
+  td.ck{width:34px}
+  td.ck input{width:16px;height:16px;cursor:pointer;accent-color:var(--paid)}
+  .trackrow td{background:#f2efeb;font-weight:600;color:var(--ink);
+               font-size:12.5px;letter-spacing:.02em;padding:8px 12px}
+  .scrollhint{font-size:12px;color:var(--ink-3);margin:0 0 8px}
+
   .empty{padding:40px 0;color:var(--ink-3);text-align:center}
   footer{margin-top:52px;padding-top:20px;border-top:1px solid var(--line);
          color:var(--ink-3);font-size:13px}
@@ -122,6 +158,10 @@
       <option value="name">Sort: name A–Z</option>
       <option value="pay">Sort: pays you first</option>
     </select>
+    <div class="viewswitch" role="group" aria-label="View mode">
+      <button class="vbtn" id="viewCards" aria-pressed="true">Cards</button>
+      <button class="vbtn" id="viewTable" aria-pressed="false">Table</button>
+    </div>
   </div>
   <div class="chips" id="trackChips"></div>
   <div class="toggles">
@@ -171,7 +211,10 @@ let saved = loadSaved();
 /* ---- filter state --------------------------------------------------------- */
 const state = {
   q:'', tracks:new Set(), sort:'deadline',
-  paid:false, remote:false, beginner:false, verified:false, savedOnly:false
+  paid:false, remote:false, beginner:false, verified:false, savedOnly:false,
+  // 'cards' or 'table' — remembered per browser, like the shortlist
+  view: (function(){ try { return localStorage.getItem('opp-tracker-view') || 'cards'; }
+                     catch(e){ return 'cards'; } })()
 };
 
 /* ---- helpers -------------------------------------------------------------- */
@@ -260,6 +303,55 @@ function sortRows(rows){
   });
 }
 
+/* ---- table view ------------------------------------------------------------
+   Same data, same filters — a dense spreadsheet-style read instead of cards.
+   Rows stay grouped by track via a spanning header row.
+   --------------------------------------------------------------------------- */
+function rowHTML(p){
+  const days = daysUntil(p.dl);
+  const soon = days !== null && days >= 0 && days <= 45;
+  let dlText = p.deadline;
+  if(days !== null && days >= 0) dlText += ` (${days}d)`;
+  const isSaved = !!saved[p.name];
+
+  return `
+  <tr class="${isSaved ? 'done' : ''}">
+    <td class="ck"><input class="tick" type="checkbox" data-name="${encodeURIComponent(p.name)}"
+        ${isSaved ? 'checked' : ''} aria-label="Shortlist ${p.name}"></td>
+    <td class="nm"><a href="${p.url}" target="_blank" rel="noopener">${p.name}</a></td>
+    <td><span class="tag ${payClass(p.pay)}">${payLabel(p.pay)}</span></td>
+    <td>${p.payNote}</td>
+    <td>${p.remote}</td>
+    <td>${p.region}</td>
+    <td class="el">${p.elig}${p.beginner ? ' <span class="tag t-beg">Beginner ok</span>' : ''}</td>
+    <td class="dlc ${soon ? 'soon' : ''}">${dlText}<br>
+      <span class="vf">${p.verified ? '✓ confirmed' : 'check page'}</span></td>
+    <td class="op">${p.opens}</td>
+    <td class="lk">
+      ${p.learn ? `<a href="${p.learn.u}" target="_blank" rel="noopener">${p.learn.t}</a>` : '—'}
+    </td>
+    <td class="lk">
+      ${p.cert ? `<a href="${p.cert.u}" target="_blank" rel="noopener">${p.cert.t}</a>` : '—'}
+    </td>
+  </tr>`;
+}
+
+function tableHTML(byTrack){
+  const head = `
+    <thead><tr>
+      <th></th><th>Programme</th><th>Paid?</th><th>Money</th><th>Remote?</th>
+      <th>Region</th><th>Eligibility</th><th>Deadline</th>
+      <th>Opens the door to</th><th>Learn first</th><th>Certification</th>
+    </tr></thead>`;
+
+  const body = Object.keys(TRACKS).filter(t => byTrack[t]).map(t => `
+    <tr class="trackrow"><td colspan="11">${TRACKS[t].label} — ${byTrack[t].length}</td></tr>
+    ${byTrack[t].map(rowHTML).join('')}`).join('');
+
+  return `<p class="scrollhint">Scroll sideways for all 11 columns. Tick a row to shortlist it.</p>
+          <div class="tablewrap"><table>${head}<tbody>${body}</tbody></table></div>`;
+}
+
 function render(){
   const rows = sortRows(PROGRAMMES.filter(matches));
   const out = document.getElementById('out');
@@ -276,15 +368,17 @@ function render(){
   const byTrack = {};
   rows.forEach(p => (byTrack[p.track] = byTrack[p.track] || []).push(p));
 
-  out.innerHTML = Object.keys(TRACKS)
-    .filter(t => byTrack[t])
-    .map(t => `
-      <section class="group">
-        <h2>${TRACKS[t].label} <span style="color:var(--ink-3);font-weight:400">(${byTrack[t].length})</span></h2>
-        <p class="gb">${TRACKS[t].blurb}</p>
-        <div class="grid">${byTrack[t].map(cardHTML).join('')}</div>
-      </section>`)
-    .join('');
+  out.innerHTML = state.view === 'table'
+    ? tableHTML(byTrack)
+    : Object.keys(TRACKS)
+        .filter(t => byTrack[t])
+        .map(t => `
+          <section class="group">
+            <h2>${TRACKS[t].label} <span style="color:var(--ink-3);font-weight:400">(${byTrack[t].length})</span></h2>
+            <p class="gb">${TRACKS[t].blurb}</p>
+            <div class="grid">${byTrack[t].map(cardHTML).join('')}</div>
+          </section>`)
+        .join('');
 
   // re-bind the shortlist ticks after every re-render
   out.querySelectorAll('.tick').forEach(box => {
@@ -354,6 +448,16 @@ document.getElementById('reset').addEventListener('click', () => {
   document.querySelectorAll('.chip').forEach(c => c.setAttribute('aria-pressed','false'));
   render();
 });
+function setView(v){
+  state.view = v;
+  try { localStorage.setItem('opp-tracker-view', v); } catch(e){ /* ignore */ }
+  document.getElementById('viewCards').setAttribute('aria-pressed', v === 'cards');
+  document.getElementById('viewTable').setAttribute('aria-pressed', v === 'table');
+  render();
+}
+document.getElementById('viewCards').addEventListener('click', () => setView('cards'));
+document.getElementById('viewTable').addEventListener('click', () => setView('table'));
+
 document.getElementById('clearSaved').addEventListener('click', () => {
   if(!confirm('Clear your whole shortlist?')) return;
   saved = {}; persist(); renderStats(); render();
@@ -361,7 +465,7 @@ document.getElementById('clearSaved').addEventListener('click', () => {
 
 buildChips();
 renderStats();
-render();
+setView(state.view);   // restores the remembered view and does the first render
 </script>
 </body>
 </html>
