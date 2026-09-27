@@ -1,7 +1,39 @@
 {
-  "updated": "2026-09-26",
+  "updated": "2026-09-27",
   "note": "Appended daily by a scheduled agent. Newest first. Each item was checked on the date shown.",
   "items": [
+    {
+      "found": "2026-09-27",
+      "kind": "deadline",
+      "name": "Chevening Scholarships — 2027/2028 cycle",
+      "url": "https://www.chevening.org/scholarship/india/",
+      "what": "Closes 6 Oct 2026 at 11:00 UTC (4:30pm IST) — nine days away. Free to apply. Fully funded one-year UK master's for Indian citizens covering tuition, a monthly stipend and flights, with studies starting Sep/Oct 2027. Requires an undergraduate degree plus at least two years of post-degree work experience (2,800 hours), and a commitment to return to India for two years after the award ends. Chevening's residency rules are written around applying from your home country or another ODA-eligible country, so confirm with the India office before applying from the USA.",
+      "dl": "2026-10-06"
+    },
+    {
+      "found": "2026-09-27",
+      "kind": "income",
+      "name": "ARC Prize 2026",
+      "url": "https://arcprize.org/competitions/2026",
+      "what": "Submissions due 2 Nov 2026, papers due 8 Nov 2026, results announced 4 Dec 2026. $2M prize pool across three tracks (ARC-AGI-2, ARC-AGI-3 and a paper prize), run through Kaggle with no fee, no degree and no affiliation required, so open worldwide subject to Kaggle's own country rules. Winning entries must be open-sourced under a permissive licence, and no internet or API-based models (GPT, Claude and the like) are allowed during evaluation.",
+      "dl": "2026-11-02"
+    },
+    {
+      "found": "2026-09-27",
+      "kind": "deadline",
+      "name": "Techstars Anywhere Accelerator — 2027 cohort",
+      "url": "https://www.techstars.com/accelerators/anywhere",
+      "what": "Final deadline 18 Nov 2026; programme runs 8 Mar to 3 Jun 2027 with Demo Day on 3 Jun. Remote-first, so no relocation, though there are three in-person offsites and it is aimed at companies operating in American time zones. Free to apply and Techstars invests on acceptance, but the page does not state the amount or equity — dates unconfirmed on terms, so check those before applying. No founder-nationality restriction is stated.",
+      "dl": "2026-11-18"
+    },
+    {
+      "found": "2026-09-27",
+      "kind": "conference",
+      "name": "MLDS 2027",
+      "url": "https://mlds.analyticsindiamag.com/",
+      "what": "Bengaluru 25–26 Feb 2027 and Hyderabad 4–5 Mar 2027. India's flagship applied AI and agentic-systems conference for developers, run by Analytics India Magazine, expecting 3,000+ practitioners and 100+ speakers. Paid and open to anyone with no free pass advertised: standard pass INR 6,000 on super early bird against INR 7,800 regular, and the super early bird ends 13 Nov 2026. Student and group passes exist.",
+      "dl": "2027-02-25"
+    },
     {
       "found": "2026-09-26",
       "kind": "deadline",

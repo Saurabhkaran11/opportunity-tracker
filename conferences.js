@@ -16,6 +16,11 @@ const EVENTS = [
     cost:"Free to apply; $18K–$24K stipend if accepted", verified:true,
     why:"Fully funded, global applications, and the closest imminent thing to a real fellowship you can get" },
 
+  { kind:"deadline", name:"Chevening Scholarships — 2027/2028 cycle", url:"https://www.chevening.org/scholarship/india/",
+    where:"Any UK university; apply as an Indian citizen", when:"6 Oct 2026, 11:00 UTC", dl:"2026-10-06",
+    cost:"Free to apply; fully funded — tuition, monthly stipend and flights", verified:true,
+    why:"The largest fully funded route open to you purely as an Indian citizen. Needs two years (2,800 hours) of post-degree work experience and a commitment to return to India for two years afterwards; confirm the residency rule with the India office before applying from the USA" },
+
   { kind:"deadline", name:"MATS Residency — Winter 2027 intake", url:"https://www.matsprogram.org/residency/apply",
     where:"Hybrid — London, Berkeley or Washington DC", when:"31 Oct 2026 AoE", dl:"2026-10-31",
     cost:"Free to apply; salaried $155K–$285K/yr plus relocation and compute", verified:true,
