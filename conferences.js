@@ -16,6 +16,11 @@ const EVENTS = [
     cost:"Free to apply; $18K–$24K stipend if accepted", verified:true,
     why:"Fully funded, global applications, and the closest imminent thing to a real fellowship you can get" },
 
+  { kind:"deadline", name:"MATS Residency — Winter 2027 intake", url:"https://www.matsprogram.org/residency/apply",
+    where:"Hybrid — London, Berkeley or Washington DC", when:"31 Oct 2026 AoE", dl:"2026-10-31",
+    cost:"Free to apply; salaried $155K–$285K/yr plus relocation and compute", verified:true,
+    why:"The strongest thing on this list: a real salary rather than a stipend, visa support, open worldwide, and explicitly no PhD or publication record needed" },
+
   { kind:"deadline", name:"NeurIPS 2026 financial assistance", url:"https://neurips.cc/Conferences/2026/FinancialAssistance",
     where:"Sydney (main), Atlanta and Paris satellites", when:"6 Oct 2026 deadline; conference 6–12 Dec 2026", dl:"2026-10-06",
     cost:"Free to apply; covers registration and up to 7 nights hotel, not flights", verified:true,
