@@ -1,7 +1,39 @@
 {
-  "updated": "2026-09-23",
+  "updated": "2026-09-26",
   "note": "Appended daily by a scheduled agent. Newest first. Each item was checked on the date shown.",
   "items": [
+    {
+      "found": "2026-09-26",
+      "kind": "deadline",
+      "name": "NeurIPS 2026 — Financial Assistance",
+      "url": "https://neurips.cc/Conferences/2026/FinancialAssistance",
+      "what": "Closes 6 Oct 2026, 23:59 AoE. Main conference is 6–12 Dec 2026 in Sydney, with Atlanta and Paris satellites. You do NOT need an accepted paper or student status — any career stage may apply on financial need, first-time attendance or accessibility grounds. Covers free registration (in-person or virtual) plus up to 7 nights of prepaid hotel; flights, meals and local transport are NOT covered.",
+      "dl": "2026-10-06"
+    },
+    {
+      "found": "2026-09-26",
+      "kind": "deadline",
+      "name": "Entrepreneur First — Winter 27 Bangalore",
+      "url": "https://apply.joinef.com/app/bangalore-winter/",
+      "what": "Early deadline 5 Oct 2026 for the first selection round; cohort starts Feb 2027, full-time and in person in Bangalore. Pays an INR 360,000 talent investment during the 12-week co-founder matching phase, then S$75,000 pre-seed for 10% if the investment committee backs your company. Free to apply, no nationality bar — this is the India-route accelerator, so US work authorisation is not a factor.",
+      "dl": "2026-10-05"
+    },
+    {
+      "found": "2026-09-26",
+      "kind": "conference",
+      "name": "St. Gallen Symposium — Global Ideas Competition 2027",
+      "url": "https://symposium.org/global-essay-competition/",
+      "what": "Submit by 1 Feb 2027, 23:59 UTC-12. Free to enter, no nationality restrictions, but you must be enrolled at master's level or higher at a research university and born in 1997 or later. Top 100 get fully funded travel, accommodation and meals to the 56th Symposium in Switzerland; three awardees share a CHF 20,000 prize fund. Entry is a 1,000-word solution brief plus a 3-minute video.",
+      "dl": "2027-02-01"
+    },
+    {
+      "found": "2026-09-26",
+      "kind": "income",
+      "name": "Mercor — AI training and evaluation contracts",
+      "url": "https://mercor.com/",
+      "what": "Rolling applications, no deadline and no fee to join. Marketplace pairing domain experts with AI labs for model training and evaluation work; the site advertises an average contracted rate of $109/hr and roles at $90–$150/hr. Country eligibility is set per role and is not stated site-wide — dates unconfirmed, verify eligibility on the specific listing before counting on it.",
+      "dl": null
+    },
     {
       "found": "2026-09-23",
       "kind": "deadline",

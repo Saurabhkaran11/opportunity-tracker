@@ -16,6 +16,16 @@ const EVENTS = [
     cost:"Free to apply; $18K–$24K stipend if accepted", verified:true,
     why:"Fully funded, global applications, and the closest imminent thing to a real fellowship you can get" },
 
+  { kind:"deadline", name:"NeurIPS 2026 financial assistance", url:"https://neurips.cc/Conferences/2026/FinancialAssistance",
+    where:"Sydney (main), Atlanta and Paris satellites", when:"6 Oct 2026 deadline; conference 6–12 Dec 2026", dl:"2026-10-06",
+    cost:"Free to apply; covers registration and up to 7 nights hotel, not flights", verified:true,
+    why:"No accepted paper and no student status required — any career stage can apply on need or first-time-attendance grounds" },
+
+  { kind:"deadline", name:"Entrepreneur First — Winter 27 Bangalore", url:"https://apply.joinef.com/app/bangalore-winter/",
+    where:"Bangalore, India (in person)", when:"5 Oct 2026 early deadline; cohort Feb 2027", dl:"2026-10-05",
+    cost:"Free to apply; INR 360,000 stipend, then S$75,000 pre-seed for 10%", verified:true,
+    why:"The India route in accelerator form — pays you during co-founder matching and sidesteps US work authorisation entirely" },
+
   { kind:"deadline", name:"Y Combinator — Winter 2027", url:"https://www.ycombinator.com/apply",
     where:"San Francisco", when:"2 Nov 2026, 8pm PT", dl:"2026-11-02",
     cost:"Free to apply", verified:true,
@@ -51,6 +61,11 @@ const EVENTS = [
     where:"BIEC, Bengaluru, India", when:"17–19 Nov 2026", dl:"2026-11-17",
     cost:"Paid passes; student and startup rates exist", verified:true,
     why:"Asia's largest tech summit — the single best India networking event if you go the India route" },
+
+  { kind:"conference", name:"St. Gallen Symposium — Global Ideas Competition 2027", url:"https://symposium.org/global-essay-competition/",
+    where:"St. Gallen, Switzerland", when:"1 Feb 2027 submission deadline", dl:"2027-02-01",
+    cost:"Free to enter; top 100 get travel, accommodation and meals fully funded", verified:true,
+    why:"A full travel grant won on merit, no nationality bar, plus a share of CHF 20,000 — but you must be enrolled at master's level or higher and born 1997 or later" },
 
   { kind:"conference", name:"Web Summit Qatar 2027", url:"https://qatar.websummit.com/",
     where:"Doha, Qatar", when:"31 Jan – 3 Feb 2027", dl:"2027-01-31",
