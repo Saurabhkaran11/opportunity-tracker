@@ -1,7 +1,31 @@
 {
-  "updated": "2026-09-27",
+  "updated": "2026-09-28",
   "note": "Appended daily by a scheduled agent. Newest first. Each item was checked on the date shown.",
   "items": [
+    {
+      "found": "2026-09-28",
+      "kind": "deadline",
+      "name": "Teach For India Fellowship 2027",
+      "url": "https://apply.teachforindia.org/",
+      "what": "Closes 1 Nov 2026, 11:59pm IST. Paid two-year full-time teaching fellowship in government and low-fee schools across nine Indian cities (Ahmedabad, Bengaluru, Chennai, Delhi, Gurugram, Hyderabad, Kolkata, Mumbai, Pune); ₹30,000/month stipend plus a city allowance of ₹6,000–12,600 and health insurance up to ₹1,00,000. Open to Indian citizens or OCI holders who will complete graduation by June/July 2027 — no prior teaching experience required. Runs entirely in India, so it sidesteps US work authorisation altogether.",
+      "dl": "2026-11-01"
+    },
+    {
+      "found": "2026-09-28",
+      "kind": "income",
+      "name": "WorldQuant BRAIN Consultant Program",
+      "url": "https://worldquantbrain.com/consultant",
+      "what": "Rolling, no deadline, free to join. Learn quantitative signal-building ('alphas') for free on WorldQuant's BRAIN simulation platform; hit 10,000 points and gold status and you're invited into the paid Consultant Program, with quarterly payouts the site reports as $2,000+ at Master level and $8,000+ at Grandmaster level. Fully remote, open to residents of 17 listed countries including India and the US, no degree required, must be 18 or older.",
+      "dl": null
+    },
+    {
+      "found": "2026-09-28",
+      "kind": "conference",
+      "name": "AAAI-27 Student Scholar Volunteer Program",
+      "url": "https://aaai.org/conference/aaai/aaai-27/student-scholar-volunteer-program/",
+      "what": "Application window 30 Nov – 4 Dec 2026 for partial travel support plus complimentary registration to volunteer at AAAI-27 (16–23 Feb 2027, Montréal, Canada), one of the top AI research conferences. Eligibility catch: you must be a full-time student and AAAI member with a paper submitted to the conference and a faculty recommendation letter — not open to non-students or anyone without a submitted paper.",
+      "dl": "2026-12-04"
+    },
     {
       "found": "2026-09-27",
       "kind": "deadline",
