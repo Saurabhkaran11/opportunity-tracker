@@ -1,7 +1,31 @@
 {
-  "updated": "2026-10-05",
+  "updated": "2026-10-06",
   "note": "Appended daily by a scheduled agent. Newest first. Each item was checked on the date shown.",
   "items": [
+    {
+      "found": "2026-10-06",
+      "kind": "deadline",
+      "name": "AFFINE Superintelligence Alignment Seminar — Winter 2027",
+      "url": "https://www.affi.ne/program/",
+      "what": "Four-week in-person AI alignment seminar in Portugal (4–29 Jan 2027), 35 places; no degree required, wants solid maths and philosophy, no nationality limit stated. Fully funded — travel, housing, food plus a $1,000 stipend. Apply by 22 Nov 2026.",
+      "dl": "2026-11-22"
+    },
+    {
+      "found": "2026-10-06",
+      "kind": "deadline",
+      "name": "Tarbell Fellowship 2027",
+      "url": "https://www.tarbellcenter.org/fellowship",
+      "what": "12-month paid AI-journalism fellowship ($75k–$120k) for people with AI or journalism expertise — journalism experience not required. Catch: geared to those with right to work in the US, UK or Hong Kong; visa sponsorship uncommon. Apply by 22 Nov 2026.",
+      "dl": "2026-11-22"
+    },
+    {
+      "found": "2026-10-06",
+      "kind": "deadline",
+      "name": "Dalai Lama Fellows 2027",
+      "url": "https://dalailamafellows.com/apply/",
+      "what": "Mostly online year-long leadership fellowship (~12 hrs/month, Apr 2027–Mar 2028) open worldwide to ages 20–36 with at least one year on a community social-change project. Free, but no project funding or stipend. Apply by 11 Nov 2026.",
+      "dl": "2026-11-11"
+    },
     {
       "found": "2026-10-05",
       "kind": "deadline",

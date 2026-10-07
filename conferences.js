@@ -46,6 +46,11 @@ const EVENTS = [
     cost:"Free to apply; stipend plus compute if accepted", verified:true,
     why:"No PhD or ML publications required — the most open frontier-lab route" },
 
+  { kind:"deadline", name:"AFFINE Superintelligence Alignment Seminar — Winter 2027", url:"https://www.affi.ne/program/",
+    where:"Portugal (in person)", when:"4–29 Jan 2027", dl:"2026-11-22",
+    cost:"Free to apply; fully funded (travel, housing, food) plus $1,000 stipend", verified:true,
+    why:"No degree required and no nationality limit stated — a funded month inside AI alignment" },
+
   { kind:"deadline", name:"VC University registration window", url:"https://venturecapitaluniversity.com/online-course/",
     where:"Online", when:"7–14 Oct 2026", dl:"2026-10-07",
     cost:"Paid course", verified:true,
