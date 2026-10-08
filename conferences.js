@@ -51,6 +51,11 @@ const EVENTS = [
     cost:"Free to apply; fully funded (travel, housing, food) plus $1,000 stipend", verified:true,
     why:"No degree required and no nationality limit stated — a funded month inside AI alignment" },
 
+  { kind:"deadline", name:"Yenching Academy of Peking University — 2027 cohort", url:"https://yenchingacademy.pku.edu.cn/ADMISSIONS.htm",
+    where:"Beijing, China (in person)", when:"30 Nov 2026, 9am Beijing time; programme starts Sep 2027", dl:"2026-11-30",
+    cost:"Free to apply; full tuition, housing, monthly stipend and one round-trip fare", verified:true,
+    why:"Fully funded master's open to Indian nationals — needs two professor references and IELTS/TOEFL unless your degree was English-taught" },
+
   { kind:"deadline", name:"VC University registration window", url:"https://venturecapitaluniversity.com/online-course/",
     where:"Online", when:"7–14 Oct 2026", dl:"2026-10-07",
     cost:"Paid course", verified:true,

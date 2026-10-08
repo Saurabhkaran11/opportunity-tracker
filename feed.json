@@ -1,7 +1,23 @@
 {
-  "updated": "2026-10-06",
+  "updated": "2026-10-08",
   "note": "Appended daily by a scheduled agent. Newest first. Each item was checked on the date shown.",
   "items": [
+    {
+      "found": "2026-10-08",
+      "kind": "deadline",
+      "name": "Yenching Academy of Peking University — 2027 cohort",
+      "url": "https://yenchingacademy.pku.edu.cn/ADMISSIONS.htm",
+      "what": "Fully funded interdisciplinary China Studies master's in Beijing for non-Chinese citizens with a bachelor's degree. Covers tuition, housing, a monthly stipend and one round-trip fare. Needs two letters from professors (associate or full) and IELTS 7.0/TOEFL 100, unless your degree was taught in English. Deadline 30 Nov 2026, 9:00 am Beijing time (evening of 29 Nov in the US).",
+      "dl": "2026-11-30"
+    },
+    {
+      "found": "2026-10-08",
+      "kind": "deadline",
+      "name": "Emergent Ventures (Mercatus Center) — rolling grants",
+      "url": "https://www.mercatus.org/emergent-ventures",
+      "what": "Tyler Cowen's low-overhead grant and fellowship programme for bold 'zero to one' projects. Open worldwide to anyone 13 or older, with a dedicated India track you pick from a drop-down. Rolling, with no deadline and free to apply. AI-written applications are rejected, so write it yourself.",
+      "dl": null
+    },
     {
       "found": "2026-10-06",
       "kind": "deadline",
