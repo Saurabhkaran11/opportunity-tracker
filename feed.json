@@ -4,6 +4,30 @@
   "items": [
     {
       "found": "2026-10-11",
+      "kind": "income",
+      "name": "PayPal AI Hackathon (Devpost)",
+      "url": "https://paypalaihackathon.devpost.com/",
+      "what": "Online hackathon: build an app that uses both the PayPal developer sandbox and any AI model or tool. Open to adults in all countries except Devpost's standard exceptions, solo or in a team. About $69,750 in prizes ($67,500+ cash). Submissions due 12 Nov 2026, 3pm ET.",
+      "dl": "2026-11-12"
+    },
+    {
+      "found": "2026-10-11",
+      "kind": "income",
+      "name": "Nebius x NVIDIA Global AI Hackathon (Devpost)",
+      "url": "https://nebiusglobalaihackathon.devpost.com/",
+      "what": "Online hackathon: build a working AI system on open infrastructure (coding/agentic, apps and agents, personal AI, or physical AI tracks). Open to adults in all countries except Devpost's standard exceptions. $50,000+ cash prizes. Submissions due 30 Oct 2026, 1pm ET.",
+      "dl": "2026-10-30"
+    },
+    {
+      "found": "2026-10-11",
+      "kind": "income",
+      "name": "Build, Ship, Shape: Amazon Developer Hackathon (Devpost)",
+      "url": "https://amazonappdev2026.devpost.com/",
+      "what": "Online hackathon: build or significantly update an app for Fire TV, Alexa+ (MCP server or Agent Skill), Bee wearable or Ring. Open to adults in all countries except Devpost's standard exceptions. $138,000 cash (about $190K including AWS credits). Submissions due 23 Oct 2026, 3pm ET — closes in under 2 weeks.",
+      "dl": "2026-10-23"
+    },
+    {
+      "found": "2026-10-11",
       "kind": "deadline",
       "name": "Pivotal Research Fellowship — Jan–Apr 2027 (London)",
       "url": "https://www.pivotal-research.org/fellowship",
