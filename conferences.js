@@ -51,6 +51,11 @@ const EVENTS = [
     cost:"Free to apply; fully funded (travel, housing, food) plus $1,000 stipend", verified:true,
     why:"No degree required and no nationality limit stated — a funded month inside AI alignment" },
 
+  { kind:"deadline", name:"Pivotal Research Fellowship — Jan–Apr 2027 (London)", url:"https://www.pivotal-research.org/fellowship",
+    where:"London, UK (in person)", when:"Apply by 1 Nov 2026; runs 18 Jan – 30 Apr 2027", dl:"2026-11-01",
+    cost:"Free to apply; £15,000–£18,000 stipend, travel covered, £1,800/month housing if based outside London", verified:true,
+    why:"No PhD needed and no nationality limit — but you arrange your own UK entry" },
+
   { kind:"deadline", name:"Yenching Academy of Peking University — 2027 cohort", url:"https://yenchingacademy.pku.edu.cn/ADMISSIONS.htm",
     where:"Beijing, China (in person)", when:"30 Nov 2026, 9am Beijing time; programme starts Sep 2027", dl:"2026-11-30",
     cost:"Free to apply; full tuition, housing, monthly stipend and one round-trip fare", verified:true,

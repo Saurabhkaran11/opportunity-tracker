@@ -1,7 +1,23 @@
 {
-  "updated": "2026-10-08",
+  "updated": "2026-10-11",
   "note": "Appended daily by a scheduled agent. Newest first. Each item was checked on the date shown.",
   "items": [
+    {
+      "found": "2026-10-11",
+      "kind": "deadline",
+      "name": "Pivotal Research Fellowship — Jan–Apr 2027 (London)",
+      "url": "https://www.pivotal-research.org/fellowship",
+      "what": "In-person AI safety research fellowship at LISA, London, 18 Jan – 30 Apr 2027; no PhD required, 18+, any nationality but you must secure your own UK entry. Pays £15,000–£18,000 stipend plus travel and £1,800/month housing for non-Londoners. Apply by 1 Nov 2026.",
+      "dl": "2026-11-01"
+    },
+    {
+      "found": "2026-10-11",
+      "kind": "deadline",
+      "name": "AEGIX Emerging Scholars Program 2026–2027",
+      "url": "https://aegixinstitute.org/emerging-scholars",
+      "what": "Part-time, hybrid-online AI governance and ethics research fellowship (Nov 2026 – Apr 2027, ~15 people) for advanced students and early-career professionals; Global South applicants encouraged. Free to apply; no stipend stated. Apply by 25 Oct 2026.",
+      "dl": "2026-10-25"
+    },
     {
       "found": "2026-10-08",
       "kind": "deadline",
